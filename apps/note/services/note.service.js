@@ -21,7 +21,7 @@ function get(noteId) {
 }
 
 function remove(noteId) {
-
+    return asyncStorageService.remove(NOTE_KEY, noteId)
 }
 
 function save(note) {

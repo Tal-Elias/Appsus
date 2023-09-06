@@ -1,9 +1,9 @@
-export function NotePreview({ note }) {
+export function NotePreview({ note, onRemoveNote }) {
 
     return (
         <div className="note-preview">
-            <h2>Note Id: {note.id}</h2>
-            <h2>Note Type: {note.type}</h2>
+            <pre>{JSON.stringify(note, null, 2)}</pre>
+            <button onClick={() => onRemoveNote(note.id)}>X</button>
         </div>
     )
 }
