@@ -3,7 +3,7 @@ import { noteService } from "../services/note.service.js";
 
 const { useState } = React
 
-export function NoteEdit({ selectedNote, onRemoveNote }) {
+export function NoteEdit({ onEditNote, selectedNote, onRemoveNote }) {
 
     const [noteToEdit, setNoteToEdit] = useState(selectedNote)
 
@@ -22,20 +22,25 @@ export function NoteEdit({ selectedNote, onRemoveNote }) {
         })
     }
 
-    function onEditNote(ev) {
+    function handleEdit(ev) {
         ev.preventDefault()
-        noteService.save(noteToEdit)
-            .then(() => console.log('added'))
-            .catch(err => console.log('err:', err))
+        onEditNote(noteToEdit)
     }
+
+    // function onEditNote(ev) {
+    //     ev.preventDefault()
+    //     noteService.save(noteToEdit)
+    //         .then(() => console.log('added'))
+    //         .catch(err => console.log('err:', err))
+    // }
 
     return (
         <div className="note-edit">
             {/* <NotePreview note={selectedNote} onRemoveNote={onRemoveNote} /> */}
-            <form onSubmit={onEditNote}>
+            <form onSubmit={(ev) => handleEdit(ev)}>
                 <input onChange={handleChange} value={noteToEdit.info.txt} type="text" name="txt" />
             </form>
-            <pre>{JSON.stringify(selectedNote, null, 2)}</pre>
+            {/* <pre>{JSON.stringify(selectedNote, null, 2)}</pre> */}
             <button onClick={() => onRemoveNote(selectedNote.id)}>X</button>
             {/* TOOL-BAR */}
         </div>

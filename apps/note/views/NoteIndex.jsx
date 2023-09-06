@@ -25,13 +25,33 @@ export function NoteIndex() {
     }
 
     function onChangeColor() {
-        
+
     }
 
-    function onAddNote(note) {
+    function onSaveNote(note) {
         noteService.save(note)
-            .then(setNotes(prevNotes => [...prevNotes, note]))
-            .catch(err => console.log('err:', err))
+            .then(savedNote => {
+                setNotes(prevNotes => [...prevNotes, savedNote])
+                showSuccessMsg('Note Added!')
+            })
+            .catch(err => {
+                console.log('err:', err)
+                showErrorMsg('Problem adding note')
+            })
+    }
+
+    function onEditNote(editedNote) {
+        noteService.save(editedNote)
+            .then(() => {
+                const updatedNotes = notes.map(note => (note.id === editedNote.id ? editedNote : note))
+                setNotes(updatedNotes)
+                setIsEditNote(false)
+                showSuccessMsg('Note Edited!')
+            })
+            .catch(err => {
+                console.log('err:', err)
+                showErrorMsg('Problem adding note')
+            })
     }
 
     function onRemoveNote(noteId) {
@@ -43,7 +63,7 @@ export function NoteIndex() {
             })
             .catch(err => {
                 console.log('err:', err)
-                showErrorMsg('Problem Removing note')
+                showErrorMsg('Problem removing note')
             })
     }
 
@@ -55,9 +75,9 @@ export function NoteIndex() {
     return (
         <section className="note-index">
             <NoteFilter filterBy={filterBy} onSetFilterBy={onSetFilterBy} />
-            <NoteAdd onAddNote={onAddNote} />
+            <NoteAdd onSaveNote={onSaveNote} />
             <NoteList notes={notes} onRemoveNote={onRemoveNote} onSelectedNote={onSelectedNote} />
-            {isEditNote && <NoteEdit selectedNote={selectedNote} onRemoveNote={onRemoveNote} />}
+            {isEditNote && <NoteEdit onEditNote={onEditNote} selectedNote={selectedNote} onRemoveNote={onRemoveNote} />}
         </section>
     )
 }

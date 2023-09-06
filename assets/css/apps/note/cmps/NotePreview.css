@@ -3,7 +3,7 @@
     flex-direction: column;
     justify-content: space-between;
 
-    /* min-width: 240px; */
+    /* width: 240px; */
     min-height: 130px;
     margin-block-end: 1em;
     break-inside: avoid;

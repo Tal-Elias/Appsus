@@ -3,7 +3,7 @@ import { noteService } from "../services/note.service.js"
 const { useState, useEffect } = React
 const { useNavigate, useParams } = ReactRouterDOM
 
-export function NoteAdd({ onAddNote }) {
+export function NoteAdd({ onSaveNote }) {
 
     const [noteToAdd, setNoteToAdd] = useState(noteService.getEmptyNote())
     const navigate = useNavigate()
@@ -25,10 +25,10 @@ export function NoteAdd({ onAddNote }) {
 
     function handleAdd(ev) {
         ev.preventDefault()
-        onAddNote(noteToAdd)
+        onSaveNote(noteToAdd)
     }
 
-    // function onAddNote(ev) {
+    // function onSaveNote(ev) {
     //     ev.preventDefault()
     //     noteService.save(noteToAdd)
     //         .then(() => console.log('added'))
