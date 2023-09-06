@@ -3,7 +3,7 @@ import { noteService } from "../services/note.service.js"
 const { useState, useEffect } = React
 const { useNavigate, useParams } = ReactRouterDOM
 
-export function NoteAdd() {
+export function NoteAdd({ onAddNote }) {
 
     const [noteToAdd, setNoteToAdd] = useState(noteService.getEmptyNote())
     const navigate = useNavigate()
@@ -23,20 +23,25 @@ export function NoteAdd() {
         })
     }
 
-    function onSaveNote(ev) {
+    function handleAdd(ev) {
         ev.preventDefault()
-        noteService.save(noteToAdd)
-            .then(() => console.log('added'))
-            .catch(err => console.log('err:', err))
+        onAddNote(noteToAdd)
     }
+
+    // function onAddNote(ev) {
+    //     ev.preventDefault()
+    //     noteService.save(noteToAdd)
+    //         .then(() => console.log('added'))
+    //         .catch(err => console.log('err:', err))
+    // }
 
     const { info } = noteToAdd
 
     return (
-        <section className="note-add">
-            <form onSubmit={onSaveNote}>
-                <input onChange={handleChange} value={info.txt} type="text" name="txt" />
+        <div className="note-add">
+            <form onSubmit={(ev) => handleAdd(ev)}>
+                <input onChange={handleChange} value={info.txt} type="text" name="txt" placeholder="Take a note..." />
             </form>
-        </section>
+        </div>
     )
 }

@@ -10,7 +10,6 @@ const { useState, useEffect } = React
 export function NoteIndex() {
     const [notes, setNotes] = useState(null)
     const [filterBy, setFilterBy] = useState(noteService.getDefaultFilter())
-
     const [selectedNote, setSelectedNote] = useState(null)
     const [isEditNote, setIsEditNote] = useState(false)
 
@@ -23,6 +22,16 @@ export function NoteIndex() {
     function onSelectedNote(note) {
         setIsEditNote(true)
         setSelectedNote(note)
+    }
+
+    function onChangeColor() {
+        
+    }
+
+    function onAddNote(note) {
+        noteService.save(note)
+            .then(setNotes(prevNotes => [...prevNotes, note]))
+            .catch(err => console.log('err:', err))
     }
 
     function onRemoveNote(noteId) {
@@ -46,7 +55,7 @@ export function NoteIndex() {
     return (
         <section className="note-index">
             <NoteFilter filterBy={filterBy} onSetFilterBy={onSetFilterBy} />
-            <NoteAdd />
+            <NoteAdd onAddNote={onAddNote} />
             <NoteList notes={notes} onRemoveNote={onRemoveNote} onSelectedNote={onSelectedNote} />
             {isEditNote && <NoteEdit selectedNote={selectedNote} onRemoveNote={onRemoveNote} />}
         </section>
