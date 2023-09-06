@@ -9,7 +9,8 @@ export const noteService = {
     get,
     remove,
     save,
-    getEmptyNote
+    getEmptyNote,
+    getDefaultFilter
 }
 
 function query() {
@@ -17,7 +18,7 @@ function query() {
 }
 
 function get(noteId) {
-
+    return asyncStorageService.get(NOTE_KEY, noteId)
 }
 
 function remove(noteId) {
@@ -26,9 +27,9 @@ function remove(noteId) {
 
 function save(note) {
     if (note.id) {
-        return storageService.put(NOTE_KEY, note)
+        return asyncStorageService.put(NOTE_KEY, note)
     } else {
-        return storageService.post(NOTE_KEY, note)
+        return asyncStorageService.post(NOTE_KEY, note)
     }
 }
 
@@ -42,6 +43,10 @@ function getEmptyNote() {
         },
         info: {}
     }
+}
+
+function getDefaultFilter() {
+    return { txt: '' }
 }
 
 function _createNotes() {
