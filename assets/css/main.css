@@ -12,9 +12,13 @@
 /* Views */
 @import './views/home.css';
 
-/* @import './apps/note/views/NoteIndex.css'; */
+/* Note */
+@import './apps/note/views/NoteIndex.css';
+@import './apps/note/cmps/NoteList.css';
+@import './apps/note/cmps/NotePreview.css';
 
-/* @import './apps/mail/views/MailIndex.css'; */
+/* Mail */
+@import './apps/mail/views/MailIndex.css';
 
 /* Cmps */
 
