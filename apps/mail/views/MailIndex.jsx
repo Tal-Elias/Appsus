@@ -1,6 +1,6 @@
 import { MailList } from "../cmps/MailList.jsx"
 import { mailService } from "../services/mail.service.js"
-import {showErrorMsg, showSuccessMsg} from '../../../services/event-bus.service.js'
+import { showErrorMsg, showSuccessMsg } from '../../../services/event-bus.service.js'
 import { EmailCompose } from "../cmps/EmailCompose.jsx"
 import { MailFilter } from "../cmps/EmailFilter.jsx"
 
@@ -13,13 +13,9 @@ export function MailIndex() {
 
 
 
+
     useEffect(() => {
-        mailService.query()
-            .then(mails => setMails(mails))
-            .catch((err) => console.log(err))
-    }, [])
-    useEffect(() => {
-        mailService.query()
+        mailService.query(filterBy)
             .then(mails => setMails(mails))
             .catch((err) => console.log(err))
     }, [filterBy])
@@ -35,20 +31,27 @@ export function MailIndex() {
                 showErrorMsg('Problem Removing ' + mailId)
             })
     }
-
+    
+    function onMailRead(mailId) {
+        mailService.setIsReadById(mailId)
+            .then(() => {
+                setMails(prevMails => prevMails)
+            }).catch(err => {
+                console.log(('err', err))
+            })
+    }
     function onSetFilterBy(filterBy) {
-        
+
         setFilterBy(prevFilter => ({ ...prevFilter, ...filterBy }))
-        console.log(filterBy)
-    }   
-   
+    }
+
     if (!mails) return <div>loading...</div>
     return (
         <section>
             <MailFilter filterBy={filterBy} onSetFilterBy={onSetFilterBy} />
-            <button onClick={()=>setIsAddingMail(!isAddingMail)}>add mail</button>
-            {isAddingMail&& <EmailCompose />}
-            <MailList mails={mails} onRemoveMail={onRemoveMail} />
+            <button onClick={() => setIsAddingMail(!isAddingMail)}>add mail</button>
+            {isAddingMail && <EmailCompose />}
+            <MailList onMailRead={onMailRead} mails={mails} onRemoveMail={onRemoveMail} />
         </section>
 
 

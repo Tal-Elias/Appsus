@@ -3,7 +3,7 @@ const mailDB=[
         id: 'e101',
         subject: 'Miss you!',
         body: 'Would love to catch up sometimes',
-        isRead: false,
+        isRead: true,
         sentAt : 1551133930594,
         removedAt : null,
         from: 'momo@momo.com',

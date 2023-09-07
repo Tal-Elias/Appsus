@@ -23,18 +23,41 @@ export const mailService = {
     save,
     getEmptyMail,
     getDefaultFilter,
+    setIsReadById
 
 }
 
-function query(filterBy = criteria) {
-    return asyncStorageService.query(MAIL_KEY).then(mails=>{
-        if(filterBy){}
+function query(filterBy = {}) {
+    return asyncStorageService.query(MAIL_KEY)
+    .then(mails=>{
+       
+        if (filterBy.txt) {
+            const regExp = new RegExp(filterBy.txt, 'i')
+            mails = mails.filter(mail => regExp.test(mail.body)||regExp.test(mail.subject))
+          }
+          console.log(mails)
+          if (filterBy.isRead) {
+            mails = mails.filter(mail => mail.isRead)
+          }
+          if (filterBy.isRead) {
+            mails = mails.filter(mail => mail.isRead)
+          }
+          return mails
     })
 
 }
 function get(mailId) {
     return asyncStorageService.get(MAIL_KEY, mailId)
 }
+
+function setIsReadById(mailId){
+    let mail= get(mailId).then((mail)=>{
+       mail.isRead= !mail.isRead
+        
+       
+    }).catch(err=>console.log(err))
+   
+}       
 
 function remove(mailId) {
     return asyncStorageService.remove(MAIL_KEY, mailId)
