@@ -44,7 +44,7 @@ export function NoteAdd({ onSaveNote }) {
             <form onSubmit={(ev) => handleAdd(ev)}>
                 <input onClick={() => setIsExpanded(!isExpanded)} onChange={handleChange} value={info.txt} type="text" name="txt" placeholder="Take a note..." />
             </form>
-            <div hidden={!isExpanded}>I was hidden</div>
+            {/* <div hidden={!isExpanded}>I was hidden</div> */}
         </div>
     )
 }

@@ -1,3 +1,17 @@
 .note-index {
     font-family: roboto, sans-serif;
 }
+
+.note-index .note-header {
+    display: flex;
+    align-items: center;
+}
+
+.note-index .note-icon {
+    padding: 10px;
+    width: 100px;
+}
+
+.note-index hr {
+    margin: 0;
+}

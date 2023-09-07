@@ -19,12 +19,12 @@ export function NoteFilter({ filterBy, onSetFilterBy }) {
         onSetFilterBy(filterByToEdit)
     }
 
-    // const { txt } = filterByToEdit
+    const { txt } = filterByToEdit
     return (
         <section className="note-filter">
             <form onSubmit={onSubmitFilter}>
-                <input onChange={handleChange} type="text" placeholder="Search" name="txt" />
-                </form>
+                <input onChange={handleChange} value={txt} type="text" placeholder="Search" name="txt" />
+            </form>
         </section>
     )
 }

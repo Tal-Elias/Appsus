@@ -1,0 +1,22 @@
+.note-add {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  margin-block-end: 1em;
+}
+
+.note-add form {
+  width: 40vw;
+}
+
+.note-add input {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #fff;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.4);
+  font-size: 14px;
+  outline: none;
+}

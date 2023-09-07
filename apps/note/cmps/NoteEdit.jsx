@@ -1,6 +1,6 @@
-import { NotePreview } from "./NotePreview.jsx";
-import { noteService } from "../services/note.service.js";
-import { NoteToolBar } from "./NoteToolBar.jsx";
+import { NotePreview } from "./NotePreview.jsx"
+import { noteService } from "../services/note.service.js"
+import { NoteToolBar } from "./NoteToolBar.jsx"
 
 const { useState } = React
 
