@@ -1,4 +1,16 @@
 .note-preview {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    /* width: 240px; */
+    min-height: 130px;
+    margin-block-end: 1em;
+    break-inside: avoid;
     background-color: aliceblue;
-    max-width: 238px;
+    border-radius: 10px;
+}
+
+.note-preview .txt{
+    padding: 12px 16px;
 }

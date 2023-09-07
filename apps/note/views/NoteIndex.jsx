@@ -10,7 +10,6 @@ const { useState, useEffect } = React
 export function NoteIndex() {
     const [notes, setNotes] = useState(null)
     const [filterBy, setFilterBy] = useState(noteService.getDefaultFilter())
-
     const [selectedNote, setSelectedNote] = useState(null)
     const [isEditNote, setIsEditNote] = useState(false)
 
@@ -25,6 +24,36 @@ export function NoteIndex() {
         setSelectedNote(note)
     }
 
+    function onChangeColor() {
+
+    }
+
+    function onSaveNote(note) {
+        noteService.save(note)
+            .then(savedNote => {
+                setNotes(prevNotes => [...prevNotes, savedNote])
+                showSuccessMsg('Note Added!')
+            })
+            .catch(err => {
+                console.log('err:', err)
+                showErrorMsg('Problem adding note')
+            })
+    }
+
+    function onEditNote(editedNote) {
+        noteService.save(editedNote)
+            .then(() => {
+                const updatedNotes = notes.map(note => (note.id === editedNote.id ? editedNote : note))
+                setNotes(updatedNotes)
+                setIsEditNote(false)
+                showSuccessMsg('Note Edited!')
+            })
+            .catch(err => {
+                console.log('err:', err)
+                showErrorMsg('Problem adding note')
+            })
+    }
+
     function onRemoveNote(noteId) {
         noteService.remove(noteId)
             .then(() => {
@@ -34,7 +63,7 @@ export function NoteIndex() {
             })
             .catch(err => {
                 console.log('err:', err)
-                showErrorMsg('Problem Removing note')
+                showErrorMsg('Problem removing note')
             })
     }
 
@@ -46,9 +75,9 @@ export function NoteIndex() {
     return (
         <section className="note-index">
             <NoteFilter filterBy={filterBy} onSetFilterBy={onSetFilterBy} />
-            <NoteAdd />
+            <NoteAdd onSaveNote={onSaveNote} />
             <NoteList notes={notes} onRemoveNote={onRemoveNote} onSelectedNote={onSelectedNote} />
-            {isEditNote && <NoteEdit selectedNote={selectedNote} onRemoveNote={onRemoveNote} />}
+            {isEditNote && <NoteEdit onEditNote={onEditNote} selectedNote={selectedNote} onRemoveNote={onRemoveNote} />}
         </section>
     )
 }

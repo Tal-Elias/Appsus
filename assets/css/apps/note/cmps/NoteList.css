@@ -1,3 +1,6 @@
 .note-list {
     position: relative;
+    columns: 6 240px;
+    column-gap: 15px;
+    padding: 10px;
 }

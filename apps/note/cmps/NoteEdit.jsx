@@ -1,17 +1,17 @@
 import { NotePreview } from "./NotePreview.jsx";
+import { noteService } from "../services/note.service.js";
 
-const { useState, useEffect } = React
-const { useNavigate, useParams } = ReactRouterDOM
+const { useState } = React
 
-export function NoteEdit({ selectedNote, onRemoveNote }) {
+export function NoteEdit({ onEditNote, selectedNote, onRemoveNote }) {
 
-    const [noteToAdd, setNoteToAdd] = useState(selectedNote)
+    const [noteToEdit, setNoteToEdit] = useState(selectedNote)
 
     function handleChange({ target }) {
         const field = target.name
         let value = target.value
 
-        setNoteToAdd(prevNoteToEdit => {
+        setNoteToEdit(prevNoteToEdit => {
             if (field === 'txt') {
                 return {
                     ...prevNoteToEdit,
@@ -22,22 +22,25 @@ export function NoteEdit({ selectedNote, onRemoveNote }) {
         })
     }
 
-    function onSaveNote(ev) {
+    function handleEdit(ev) {
         ev.preventDefault()
-        noteService.save(noteToAdd)
-            .then(() => console.log('added'))
-            .catch(err => console.log('err:', err))
+        onEditNote(noteToEdit)
     }
 
-    const { info } = selectedNote
+    // function onEditNote(ev) {
+    //     ev.preventDefault()
+    //     noteService.save(noteToEdit)
+    //         .then(() => console.log('added'))
+    //         .catch(err => console.log('err:', err))
+    // }
 
     return (
         <div className="note-edit">
             {/* <NotePreview note={selectedNote} onRemoveNote={onRemoveNote} /> */}
-            <form>
-            <input onSubmit={onSaveNote} onChange={handleChange} value={info.txt} type="text" name="txt" placeholder={selectedNote.info.txt} />
+            <form onSubmit={(ev) => handleEdit(ev)}>
+                <input onChange={handleChange} value={noteToEdit.info.txt} type="text" name="txt" />
             </form>
-            <pre>{JSON.stringify(selectedNote, null, 2)}</pre>
+            {/* <pre>{JSON.stringify(selectedNote, null, 2)}</pre> */}
             <button onClick={() => onRemoveNote(selectedNote.id)}>X</button>
             {/* TOOL-BAR */}
         </div>
