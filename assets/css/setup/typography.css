@@ -18,6 +18,20 @@
     content: "\f2ed";
 }
 
+
 .fa.bg-color::before {
     content: "\f53f";
+}
+/* FA mail */
+.fa.inbox::before {
+    content: "\f01c";
+}
+.fa.sent::before {
+    content: "\f1d8";
+}
+.fa.trash::before {
+    content: "\f2ed";
+}
+.fa.draft::before {
+    content: "\e4eb";
 }
