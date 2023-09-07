@@ -1,11 +1,13 @@
+import { NoteColorPalette } from "./NoteColorPalette.jsx"
 import { NoteToolBar } from "./NoteToolBar.jsx"
 
 export function NotePreview({ note, onRemoveNote, onSelectedNote, onChangeBgColor }) {
 
     return (
-        <div className="note-preview">
+        <div onClick={() => onSelectedNote(note)} className="note-preview">
             <div onClick={() => onSelectedNote(note)}>
             <div className="txt">{note.info.txt}</div>
+            {/* <NoteColorPalette /> */}
             </div>
             {/* <NoteToolBar note={note} onRemoveNote={onRemoveNote} onChangeBgColor={onChangeBgColor}/> */}
         </div>

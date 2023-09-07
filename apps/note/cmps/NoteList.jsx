@@ -1,3 +1,4 @@
+import { NoteColorPalette } from "./NoteColorPalette.jsx"
 import { NotePreview } from "./NotePreview.jsx"
 import { NoteToolBar } from "./NoteToolBar.jsx"
 
@@ -13,16 +14,3 @@ export function NoteList({ notes, onRemoveNote, onSelectedNote, onChangeBgColor 
         </section>
     )
 }
-
-// function DynamicCmp(props) {
-//     switch (props.type) {
-//         case 'Txt':
-//             return <NoteTxt {...props} />
-//         case 'Img':
-//             return <NoteImg {...props} />
-//         case 'Video':
-//             return <NoteVideo {...props} />
-//         case 'Todos':
-//             return <NoteTodos {...props} />
-//     }
-// }

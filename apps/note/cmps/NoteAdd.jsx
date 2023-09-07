@@ -27,7 +27,7 @@ export function NoteAdd({ onSaveNote }) {
     function handleAdd(ev) {
         ev.preventDefault()
         onSaveNote(noteToAdd)
-        setIsExpanded(!isExpanded)
+        // setIsExpanded(!isExpanded)
     }
 
     // function onSaveNote(ev) {
@@ -42,7 +42,7 @@ export function NoteAdd({ onSaveNote }) {
     return (
         <div className="note-add">
             <form onSubmit={(ev) => handleAdd(ev)}>
-                <input onClick={() => setIsExpanded(!isExpanded)} onChange={handleChange} value={info.txt} type="text" name="txt" placeholder="Take a note..." />
+                <input /*onClick={() => setIsExpanded(!isExpanded)}*/ onChange={handleChange} value={info.txt} type="text" name="txt" placeholder="Take a note..." />
             </form>
             {/* <div hidden={!isExpanded}>I was hidden</div> */}
         </div>

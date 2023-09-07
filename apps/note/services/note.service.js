@@ -10,7 +10,8 @@ export const noteService = {
     remove,
     save,
     getEmptyNote,
-    getDefaultFilter
+    getDefaultFilter,
+    getById
 }
 
 function query(filterBy = {}) {
@@ -108,4 +109,39 @@ function _createNote() {
     const note = getEmptyNote()
     note.id = utilService.makeId()
     return note
+}
+
+function getById() {
+    return Promise.resolve(notes)
+}
+
+const notes = {
+    cmps: [
+        {
+            id: 'n101',
+            type: 'NoteTxt',
+            info: {
+                txt: 'Fullstack Me Baby!'
+            }
+        },
+        {
+            id: 'n102',
+            type: 'NoteImg',
+            info: {
+                url: 'http://some-img/me',
+                title: 'Bobi and Me'
+            },
+        },
+        {
+            id: 'n103',
+            type: 'NoteTodos',
+            info: {
+                title: 'Get my stuff together',
+                todos: [
+                    { txt: 'Driving license', doneAt: null },
+                    { txt: 'Coding power', doneAt: 187111111 }
+                ]
+            }
+        }
+    ]
 }
