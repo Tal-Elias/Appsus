@@ -3,6 +3,7 @@ import { mailService } from "../services/mail.service.js"
 import { showErrorMsg, showSuccessMsg } from '../../../services/event-bus.service.js'
 import { EmailCompose } from "../cmps/EmailCompose.jsx"
 import { MailFilter } from "../cmps/EmailFilter.jsx"
+import { EmailFolderList } from "../cmps/EmailFolderList.jsx"
 
 const { useState, useEffect } = React
 
@@ -54,22 +55,21 @@ export function MailIndex() {
 
     if (!mails) return <div>loading...</div>
     return (
-        <section>
-            <section>
+        <section  className="flex " >
+            <section className="flex column">
 
             <section>
             {isAddingMail && <EmailCompose className="email-compose" onSentMail={onSentMail} />}
             <button onClick={() => setIsAddingMail(!isAddingMail)}>add mail</button>
-            <MailFilter filterBy={filterBy} onSetFilterBy={onSetFilterBy} />
             </section>
-            
-            <section>
-                
+
+            <section  className="flex column">
+                <EmailFolderList/>
             </section>
             </section>
 
             <section>
-            
+            <MailFilter filterBy={filterBy} onSetFilterBy={onSetFilterBy} />
             <MailList onMailRead={onMailRead} mails={mails} onRemoveMail={onRemoveMail} />
             </section>
         </section>

@@ -6,7 +6,7 @@ export function MailList({ mails, onRemoveMail, onMailRead }) {
         <table className="mail-table">
 
             <thead>
-
+            
             </thead>
             <tbody>
               
