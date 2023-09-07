@@ -6,6 +6,7 @@ import { NoteEdit } from "../cmps/NoteEdit.jsx"
 import { showErrorMsg, showSuccessMsg } from '../../../services/event-bus.service.js'
 
 const { useState, useEffect } = React
+const { Link, NavLink } = ReactRouterDOM
 
 export function NoteIndex() {
     const [notes, setNotes] = useState(null)
@@ -77,8 +78,14 @@ export function NoteIndex() {
     return (
         <section className="note-index">
             <div className="note-header">
-            <div className="fa note-icon">ICON</div>
-            <NoteFilter filterBy={filterBy} onSetFilterBy={onSetFilterBy} />
+                <div className="fa note-icon">ICON</div>
+                <NoteFilter filterBy={filterBy} onSetFilterBy={onSetFilterBy} />
+                {/* <nav>
+                    <NavLink to="/">Home</NavLink>
+                    <NavLink to="/about">About</NavLink>
+                    <NavLink to="/mail">Mail</NavLink>
+                    <NavLink to="/note">Note</NavLink>
+                </nav> */}
             </div>
             <hr />
             <NoteAdd onSaveNote={onSaveNote} />

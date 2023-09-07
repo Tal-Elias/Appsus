@@ -1,5 +1,7 @@
 const { useState, useEffect } = React
 
+const { Link, NavLink } = ReactRouterDOM
+
 export function NoteFilter({ filterBy, onSetFilterBy }) {
     const [filterByToEdit, setFilterByToEdit] = useState(filterBy)
 
