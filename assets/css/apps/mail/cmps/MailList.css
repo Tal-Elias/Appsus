@@ -1,1 +1,5 @@
  /* mail list */
+ .mail-table{
+    grid-row: 1 /span 2;
+    grid-column: 2; 
+ }

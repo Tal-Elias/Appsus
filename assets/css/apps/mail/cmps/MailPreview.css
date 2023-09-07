@@ -1,0 +1,7 @@
+.mail-preview{
+    gap: 10px;
+    line-height: 2.8em;
+    padding: 0 15px;
+    
+    /* position: relative; */
+}

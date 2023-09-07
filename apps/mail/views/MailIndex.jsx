@@ -32,9 +32,14 @@ export function MailIndex() {
                 showErrorMsg('Problem Removing ' + mailId)
             })
     }
-    function onSentMail(mail){
-        mailService.save(mail).then(sentMail=>{
-            setMails(prevMails=>[...prevMails,sentMail])
+
+    function handleCloseModal(){
+        setIsAddingMail(false)
+    }
+
+    function onSentMail(mail) {
+        mailService.save(mail).then(sentMail => {
+            setMails(prevMails => [...prevMails, sentMail])
             setIsAddingMail(false)
             showSuccessMsg('Mail have sent!')
         })
@@ -55,23 +60,24 @@ export function MailIndex() {
 
     if (!mails) return <div>loading...</div>
     return (
-        <section  className="flex " >
-            <section className="flex column">
+        <section className=" mail-index  " >
+            <div className="mail-header">
+                <div className="fa note-icon">ICON</div>
+                <MailFilter filterBy={filterBy} onSetFilterBy={onSetFilterBy} />
+            </div>
 
-            <section>
-            {isAddingMail && <EmailCompose className="email-compose" onSentMail={onSentMail} />}
-            <button onClick={() => setIsAddingMail(!isAddingMail)}>add mail</button>
+         <section className="mail-content grid">
+            <section className="side-menu flex column">
+                {isAddingMail && <EmailCompose handleCloseModal={handleCloseModal} onSentMail={onSentMail} />}
+                <button className="compose-button" onClick={() => setIsAddingMail(!isAddingMail)}>add mail</button>
+                <EmailFolderList />
             </section>
 
-            <section  className="flex column">
-                <EmailFolderList/>
-            </section>
-            </section>
-
-            <section>
-            <MailFilter filterBy={filterBy} onSetFilterBy={onSetFilterBy} />
             <MailList onMailRead={onMailRead} mails={mails} onRemoveMail={onRemoveMail} />
-            </section>
+        </section>
+
+
+
         </section>
 
 

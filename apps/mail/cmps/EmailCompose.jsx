@@ -1,6 +1,6 @@
 import { mailService } from "../services/mail.service.js"
 const { useState}=React
-export function EmailCompose({onSentMail}){
+export function EmailCompose({onSentMail,handleCloseModal}){
     const [mailToAdd,setMailToAdd]=useState(mailService.getEmptyMail())
 
     function onSaveMail(ev) {
@@ -33,14 +33,23 @@ export function EmailCompose({onSentMail}){
       }
       const {to,subject,body}=mailToAdd
     return(
-        <section className='email-compose'>
+        <section className='email-compose-wrapper'>
            <React.Fragment>
+
+          <div className="email-compose-header flex space-between ">
+           <h3>New Message</h3>  
+           <button onClick={()=>handleCloseModal()} >X</button>  
+          </div>
+
+            <div className="email-compose">
             <form onSubmit={(ev)=>onSaveMail(ev)}>
-            <input type='text' placeholder='to' value={to} name='to' onChange={handleChange}/>
-            <input type='text' placeholder='subject' value={subject} name='subject' onChange={handleChange}/>
-            <input type='textarea' placeholder='new message' value={body} name='body' onChange={handleChange}/>
+            <input  type='text' placeholder='to' value={to} name='to' onChange={handleChange}/>
+            <input className="subject" type='text' placeholder='subject' value={subject} name='subject' onChange={handleChange}/>
+            <input type='textarea'  placeholder='new message' value={body} name='body' onChange={handleChange}/>
             <button>send mail</button>
             </form>
+            </div>
+
             </React.Fragment>
 
         </section>

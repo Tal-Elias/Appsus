@@ -37,7 +37,7 @@ export function MailFilter({ filterBy, onSetFilterBy }) {
   const { txt, isRead, isStared } = filterByToEdit
 
   return (
-    <section className='book-filter'>
+    <section className='mail-filter flex column'>
       
       <form onSubmit={onSubmitFilter}>
         <input
@@ -50,7 +50,7 @@ export function MailFilter({ filterBy, onSetFilterBy }) {
           name='txt'
         />
 
-        <label htmlFor='isRead'>isRead </label>
+        {/* <label htmlFor='isRead'>isRead </label>
         <input
           onChange={handleChange}
           type='checkbox'
@@ -67,7 +67,7 @@ export function MailFilter({ filterBy, onSetFilterBy }) {
           id='isStared'
           value={isStared}
           name='isStared'
-        />
+        /> */}
       </form>
     </section>
   )

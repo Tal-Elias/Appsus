@@ -23,6 +23,10 @@
 
 /* Mail */
 @import './apps/mail/views/MailIndex.css';
+@import './apps/mail/cmps/EmailFilter.css';
+@import './apps/mail/cmps/EmailFolderList.css';
+@import './apps/mail/cmps/MailList.css';
+@import './apps/mail/cmps/EmailCompose.css';
 
 
 /* Cmps */
