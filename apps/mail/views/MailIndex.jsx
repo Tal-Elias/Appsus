@@ -31,7 +31,13 @@ export function MailIndex() {
                 showErrorMsg('Problem Removing ' + mailId)
             })
     }
-    
+    function onSentMail(mail){
+        mailService.save(mail).then(sentMail=>{
+            setMails(prevMails=>[...prevMails,sentMail])
+            setIsAddingMail(false)
+            showSuccessMsg('Mail have sent!')
+        })
+    }
     function onMailRead(mailId) {
         mailService.setIsReadById(mailId)
             .then(() => {
@@ -40,6 +46,7 @@ export function MailIndex() {
                 console.log(('err', err))
             })
     }
+
     function onSetFilterBy(filterBy) {
 
         setFilterBy(prevFilter => ({ ...prevFilter, ...filterBy }))
@@ -48,10 +55,23 @@ export function MailIndex() {
     if (!mails) return <div>loading...</div>
     return (
         <section>
-            <MailFilter filterBy={filterBy} onSetFilterBy={onSetFilterBy} />
+            <section>
+
+            <section>
+            {isAddingMail && <EmailCompose className="email-compose" onSentMail={onSentMail} />}
             <button onClick={() => setIsAddingMail(!isAddingMail)}>add mail</button>
-            {isAddingMail && <EmailCompose />}
+            <MailFilter filterBy={filterBy} onSetFilterBy={onSetFilterBy} />
+            </section>
+            
+            <section>
+                
+            </section>
+            </section>
+
+            <section>
+            
             <MailList onMailRead={onMailRead} mails={mails} onRemoveMail={onRemoveMail} />
+            </section>
         </section>
 
 

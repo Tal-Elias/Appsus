@@ -1,14 +1,11 @@
 import { mailService } from "../services/mail.service.js"
 const { useState}=React
-export function EmailCompose(){
+export function EmailCompose({onSentMail}){
     const [mailToAdd,setMailToAdd]=useState(mailService.getEmptyMail())
 
     function onSaveMail(ev) {
         ev.preventDefault()
-        mailService.save(mailToAdd)
-            .then(() => console.log('added'))
-            .catch(err => console.log('err:', err))
-
+        onSentMail(mailToAdd)
     }
 
     function handleChange( {target} ) {
@@ -38,7 +35,7 @@ export function EmailCompose(){
     return(
         <section className='email-compose'>
            <React.Fragment>
-            <form onSubmit={onSaveMail}>
+            <form onSubmit={(ev)=>onSaveMail(ev)}>
             <input type='text' placeholder='to' value={to} name='to' onChange={handleChange}/>
             <input type='text' placeholder='subject' value={subject} name='subject' onChange={handleChange}/>
             <input type='textarea' placeholder='new message' value={body} name='body' onChange={handleChange}/>
