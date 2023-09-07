@@ -9,3 +9,15 @@
     font-family: fa;
     src: url("../../fonts/fa/fa-solid-900.ttf");
 }
+
+.fa::before {
+    font-family: fa;
+}
+
+.fa.remove::before {
+    content: "\f2ed";
+}
+
+.fa.bg-color::before {
+    content: "\f53f";
+}

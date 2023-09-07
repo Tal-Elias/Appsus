@@ -12,6 +12,7 @@ export function NoteIndex() {
     const [filterBy, setFilterBy] = useState(noteService.getDefaultFilter())
     const [selectedNote, setSelectedNote] = useState(null)
     const [isEditNote, setIsEditNote] = useState(false)
+    const [isNoteEditOpen, setIsNoteEditOpen] = useState(false);
 
     useEffect(() => {
         noteService.query()
@@ -22,9 +23,10 @@ export function NoteIndex() {
     function onSelectedNote(note) {
         setIsEditNote(true)
         setSelectedNote(note)
+        setIsNoteEditOpen(true)
     }
 
-    function onChangeColor() {
+    function onChangeBgColor() {
 
     }
 
@@ -76,8 +78,10 @@ export function NoteIndex() {
         <section className="note-index">
             <NoteFilter filterBy={filterBy} onSetFilterBy={onSetFilterBy} />
             <NoteAdd onSaveNote={onSaveNote} />
-            <NoteList notes={notes} onRemoveNote={onRemoveNote} onSelectedNote={onSelectedNote} />
+            <NoteList notes={notes} onRemoveNote={onRemoveNote} onSelectedNote={onSelectedNote} onChangeBgColor={onChangeBgColor} />
+            <div className={`note-edit-backdrop ${isNoteEditOpen ? 'note-edit-backdrop-entered' : 'note-edit-backdrop-exited'}`} onClick={() => setIsNoteEditOpen(false)}>
             {isEditNote && <NoteEdit onEditNote={onEditNote} selectedNote={selectedNote} onRemoveNote={onRemoveNote} />}
+            </div>
         </section>
     )
 }

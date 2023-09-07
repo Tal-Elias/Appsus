@@ -1,3 +1,13 @@
 :root {
     --main-bg-color: lightblue;
+
+    /* notes bg-color scheme */
+
+    --clr-bg-1: #87CEEB;
+    --clr-bg-2: #98FB98;
+    --clr-bg-3: #E6E6FA;
+    --clr-bg-4: #FFDAB9;
+    --clr-bg-5: #FFE4E1;
+    --clr-bg-6: #C8A2C8;
+
 }

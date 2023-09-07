@@ -1,9 +1,10 @@
 import { NotePreview } from "./NotePreview.jsx";
 import { noteService } from "../services/note.service.js";
+import { NoteToolBar } from "./NoteToolBar.jsx";
 
 const { useState } = React
 
-export function NoteEdit({ onEditNote, selectedNote, onRemoveNote }) {
+export function NoteEdit({ onEditNote, selectedNote, onRemoveNote, onChangeBgColor }) {
 
     const [noteToEdit, setNoteToEdit] = useState(selectedNote)
 
@@ -41,7 +42,8 @@ export function NoteEdit({ onEditNote, selectedNote, onRemoveNote }) {
                 <input onChange={handleChange} value={noteToEdit.info.txt} type="text" name="txt" />
             </form>
             {/* <pre>{JSON.stringify(selectedNote, null, 2)}</pre> */}
-            <button onClick={() => onRemoveNote(selectedNote.id)}>X</button>
+            {/* <button onClick={() => onRemoveNote(selectedNote.id)}>X</button> */}
+            <NoteToolBar note={selectedNote} onRemoveNote={onRemoveNote} onChangeBgColor={onChangeBgColor}/>
             {/* TOOL-BAR */}
         </div>
     )

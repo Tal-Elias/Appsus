@@ -1,11 +1,13 @@
 import { NoteToolBar } from "./NoteToolBar.jsx"
 
-export function NotePreview({ note, onRemoveNote, onSelectedNote }) {
+export function NotePreview({ note, onRemoveNote, onSelectedNote, onChangeBgColor }) {
 
     return (
-        <div className="note-preview" onClick={() => onSelectedNote(note)}>
+        <div className="note-preview">
+            <div onClick={() => onSelectedNote(note)}>
             <div className="txt">{note.info.txt}</div>
-            <NoteToolBar note={note} onRemoveNote={onRemoveNote} />
+            </div>
+            {/* <NoteToolBar note={note} onRemoveNote={onRemoveNote} onChangeBgColor={onChangeBgColor}/> */}
         </div>
     )
 }
