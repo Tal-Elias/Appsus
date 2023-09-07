@@ -1,10 +1,15 @@
 .email-folder-list{
- justify-content: space-between;
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;  
+ gap:10px
 }
 
 .email-folder-list button{
   max-width: 10vw;
   background-color: transparent;
   display: flex;
+  border-radius:50px;
+ 
   
 }

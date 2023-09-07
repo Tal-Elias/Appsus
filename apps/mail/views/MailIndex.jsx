@@ -69,7 +69,7 @@ export function MailIndex() {
          <section className="mail-content grid">
             <section className="side-menu flex column">
                 {isAddingMail && <EmailCompose handleCloseModal={handleCloseModal} onSentMail={onSentMail} />}
-                <button className="compose-button" onClick={() => setIsAddingMail(!isAddingMail)}>add mail</button>
+                <button className="compose-button" onClick={() => setIsAddingMail(!isAddingMail)}>New mail</button>
                 <EmailFolderList />
             </section>
 
