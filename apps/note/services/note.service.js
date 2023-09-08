@@ -11,7 +11,7 @@ export const noteService = {
     save,
     getEmptyNote,
     getDefaultFilter,
-    getById
+    // getById
 }
 
 function query(filterBy = {}) {
@@ -70,7 +70,7 @@ function _createNotes() {
                 type: 'NoteTxt',
                 isPinned: true,
                 style: {
-                    backgroundColor: '#00d'
+                    backgroundColor: '#FFDAB9'
                 },
                 info: {
                     txt: 'Fullstack Me Baby!'
@@ -81,11 +81,11 @@ function _createNotes() {
                 type: 'NoteImg',
                 isPinned: false,
                 info: {
-                    url: 'http://some-img/me',
+                    url: 'assets/img/audi.jpg',
                     title: 'Bobi and Me'
                 },
                 style: {
-                    backgroundColor: '#00d'
+                    backgroundColor: '#87CEEB'
                 }
             },
             {
@@ -98,6 +98,9 @@ function _createNotes() {
                         { txt: 'Driving license', doneAt: null },
                         { txt: 'Coding power', doneAt: 187111111 }
                     ]
+                },
+                style: {
+                    backgroundColor: '#E6E6FA'
                 }
             }
         ]
@@ -111,37 +114,37 @@ function _createNote() {
     return note
 }
 
-function getById() {
-    return Promise.resolve(notes)
-}
+// function getById() {
+//     return Promise.resolve(notes)
+// }
 
-const notes = {
-    cmps: [
-        {
-            id: 'n101',
-            type: 'NoteTxt',
-            info: {
-                txt: 'Fullstack Me Baby!'
-            }
-        },
-        {
-            id: 'n102',
-            type: 'NoteImg',
-            info: {
-                url: 'http://some-img/me',
-                title: 'Bobi and Me'
-            },
-        },
-        {
-            id: 'n103',
-            type: 'NoteTodos',
-            info: {
-                title: 'Get my stuff together',
-                todos: [
-                    { txt: 'Driving license', doneAt: null },
-                    { txt: 'Coding power', doneAt: 187111111 }
-                ]
-            }
-        }
-    ]
-}
+// const notes = {
+//     cmps: [
+//         {
+//             id: 'n101',
+//             type: 'NoteTxt',
+//             info: {
+//                 txt: 'Fullstack Me Baby!'
+//             }
+//         },
+//         {
+//             id: 'n102',
+//             type: 'NoteImg',
+//             info: {
+//                 url: 'http://some-img/me',
+//                 title: 'Bobi and Me'
+//             },
+//         },
+//         {
+//             id: 'n103',
+//             type: 'NoteTodos',
+//             info: {
+//                 title: 'Get my stuff together',
+//                 todos: [
+//                     { txt: 'Driving license', doneAt: null },
+//                     { txt: 'Coding power', doneAt: 187111111 }
+//                 ]
+//             }
+//         }
+//     ]
+// }

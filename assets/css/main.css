@@ -21,6 +21,7 @@
 @import './apps/note/cmps/NoteEdit.css';
 @import './apps/note/cmps/NoteToolBar.css';
 @import './apps/note/cmps/NoteColorPalette.css';
+@import './apps/note/cmps/NoteTxt.css';
 
 /* Mail */
 @import './apps/mail/views/MailIndex.css';

@@ -3,11 +3,11 @@
   justify-content: center;
   align-items: center;
   padding: 10px;
-  margin-block-end: 1em;
+  margin-block-end: 2em;
 }
 
 .note-add form {
-  width: 40vw;
+  width: 30vw;
 }
 
 .note-add input {
