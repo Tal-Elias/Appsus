@@ -33,6 +33,12 @@ export function MailIndex() {
             })
     }
 
+    function onSetStarred(mailId){
+        mailService.setStarredById(mailId).then((updatedMails)=>{
+            setMails(prevMails=>[...prevMails,updatedMails])
+        })
+    }
+
     function handleCloseModal(){
         setIsAddingMail(false)
     }
@@ -73,7 +79,8 @@ export function MailIndex() {
                 <EmailFolderList />
             </section>
 
-            <MailList onMailRead={onMailRead} mails={mails} onRemoveMail={onRemoveMail} />
+            <MailList onMailRead={onMailRead} mails={mails}
+            onSetStarred={onSetStarred} onRemoveMail={onRemoveMail} />
         </section>
 
 

@@ -66,10 +66,6 @@
 
 }
 
-.fa.read::before {
-    content: "\f2b6";
-}
-
 .fa.unread::before {
     content: "\f0e0";
 }
