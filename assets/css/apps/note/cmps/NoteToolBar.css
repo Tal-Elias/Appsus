@@ -2,6 +2,7 @@
     /* position: relative; */
     opacity: 0;
     transition: opacity 0.2s ease-in-out;
+    margin-block-start: auto;
 }
 
 .note-toolbar:hover {

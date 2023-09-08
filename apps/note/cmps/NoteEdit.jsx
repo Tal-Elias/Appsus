@@ -1,51 +1,61 @@
 import { NotePreview } from "./NotePreview.jsx"
 import { noteService } from "../services/note.service.js"
 import { NoteToolBar } from "./NoteToolBar.jsx"
+import { NoteColorPalette } from "./NoteColorPalette.jsx"
 
-const { useState } = React
+const { useState, useEffect } = React
 
 export function NoteEdit({ onEditNote, selectedNote, onRemoveNote, onChangeBgColor }) {
 
     const [noteToEdit, setNoteToEdit] = useState(selectedNote)
+    const [isColorPaletteOpen, setColorPaletteOpen] = useState(false)
+    const [answersMap, setAnswersMap] = useState({})
 
-    function handleChange({ target }) {
-        const field = target.name
-        let value = target.value
+    useEffect(() => {
+        
+    }, [])
 
-        switch (target.type) {
-            case 'number':
-            case 'range':
-                value = +value || ''
-                break;
+    function onChangeVal(id, val) {
 
-            case 'checkbox':
-                value = target.checked
-                break
+        const answersToSave = { ...answersMap }
+        answersToSave[id] = val
+        setAnswersMap(answersToSave)
+    }
 
-            default:
-                break;
+    function handleNoteClick(ev) {
+        ev.stopPropagation()
+    }
+
+    function toggleColorPalette() {
+        if (isColorPaletteOpen) {
+            setColorPaletteOpen(false)
+        } else {
+            setColorPaletteOpen(true)
         }
-
-        setNoteToEdit(prevNoteToEdit => {
-            if (field === 'txt') {
-                return {
-                    ...prevNoteToEdit,
-                    info: { ...prevNoteToEdit.info, txt: value }
-                }
-            }
-            return { ...prevNoteToEdit, [field]: value }
-        })
     }
 
-    function handleEdit(ev) {
-        ev.preventDefault()
-        onEditNote(noteToEdit)
-    }
+    if (!noteToEdit) return <div>loading..</div>
 
     return (
-        <div className="note-edit" style={selectedNote.style}>
-            <DynamicCmp type={selectedNote.type} info={selectedNote.info} />
-            <NoteToolBar note={selectedNote} onRemoveNote={onRemoveNote} onChangeBgColor={onChangeBgColor} />
+        <div className="note-edit" style={selectedNote.style}
+            onClick={handleNoteClick}
+        >
+            <DynamicCmp type={noteToEdit.type}
+                info={noteToEdit.info}
+                val={answersMap[noteToEdit.id] || ''}
+                onChangeVal={(val) => {
+                    onChangeVal(noteToEdit.id, val)
+                }}
+            />
+            <NoteToolBar note={noteToEdit}
+                onRemoveNote={onRemoveNote}
+                toggleColorPalette={() => toggleColorPalette()}
+            />
+            {isColorPaletteOpen && (
+                <NoteColorPalette note={noteToEdit}
+                onChangeBgColor={onChangeBgColor}
+                />
+            )}
         </div>
     )
 }
@@ -61,11 +71,13 @@ function DynamicCmp(props) {
     }
 }
 
-function NoteTxt({ info }) {
+function NoteTxt({ info, val = '', onChangeVal }) {
     const { txt } = info
     return (
         <section className="note-txt">
-            <div className="txt">{txt}</div>
+            <input type="text" value={txt} onChange={(ev) => {
+                onChangeVal(ev.target.value)
+            }} />
         </section>
     )
 }
@@ -73,17 +85,21 @@ function NoteTxt({ info }) {
 function NoteImg({ info }) {
     const { url } = info
     return (
-        <img src={url} alt="" />
+        <section className="note-img">
+            <img src={url} alt="" />
+        </section>
     )
 }
 
 function NoteTodos({ info }) {
     const { todos } = info
     return (
-        <ul>
-            {
-                todos.map(todo => <li key={todo.txt}>{todo.txt}</li>)
-            }
-        </ul>
+        <section className="note-todos">
+            <ul>
+                {
+                    todos.map(todo => <li key={todo.txt}>{todo.txt}</li>)
+                }
+            </ul>
+        </section>
     )
 }

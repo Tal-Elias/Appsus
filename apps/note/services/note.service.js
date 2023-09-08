@@ -48,7 +48,7 @@ function getEmptyNote() {
         type: '',
         isPinned: false,
         style: {
-            backgroundColor: '#00d'
+            backgroundColor: '#0000'
         },
         info: {
             txt: ''

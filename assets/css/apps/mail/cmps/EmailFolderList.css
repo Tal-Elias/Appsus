@@ -15,12 +15,12 @@
 }
 
 
-button.fa{
+.email-folder-list button.fa{
   justify-content: space-around;
   border: transparent;
 }
 
-button.fa:hover{
+.email-folder-list button.fa:hover{
 background-color: #f1f3f4;
 cursor: pointer;
 padding: 10px;

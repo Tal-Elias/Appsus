@@ -1,13 +1,11 @@
 import { noteService } from "../services/note.service.js"
 
 const { useState, useEffect } = React
-const { useNavigate, useParams } = ReactRouterDOM
 
 export function NoteAdd({ onSaveNote }) {
 
     const [noteToAdd, setNoteToAdd] = useState(noteService.getEmptyNote())
     const [isExpanded, setIsExpanded] = useState(false)
-    const navigate = useNavigate()
 
     function handleChange({ target }) {
         const field = target.name
@@ -17,7 +15,8 @@ export function NoteAdd({ onSaveNote }) {
             if (field === 'txt') {
                 return {
                     ...prevNoteToEdit,
-                    info: { ...prevNoteToEdit.info, txt: value }
+                    info: { ...prevNoteToEdit.info, txt: value },
+                    type: 'NoteTxt'
                 }
             }
             return { ...prevNoteToEdit, [field]: value }
@@ -30,21 +29,28 @@ export function NoteAdd({ onSaveNote }) {
         // setIsExpanded(!isExpanded)
     }
 
-    // function onSaveNote(ev) {
-    //     ev.preventDefault()
-    //     noteService.save(noteToAdd)
-    //         .then(() => console.log('added'))
-    //         .catch(err => console.log('err:', err))
-    // }
-
     const { info } = noteToAdd
 
     return (
         <div className="note-add">
             <form onSubmit={(ev) => handleAdd(ev)}>
-                <input /*onClick={() => setIsExpanded(!isExpanded)}*/ onChange={handleChange} value={info.txt} type="text" name="txt" placeholder="Take a note..." />
+                <div className="input-wrapper">
+                    <input
+                        // onClick={() => setIsExpanded(!isExpanded)}
+                        onChange={handleChange}
+                        value={info.txt}
+                        type="text"
+                        name="txt"
+                        placeholder="Take a note..."
+                    />
+                    {
+                        <div className="note-type">
+                            <button type="button" className="fa list"></button>
+                            <button type="button" className="fa image"></button>
+                        </div>
+                    }
+                </div>
             </form>
-            {/* <div hidden={!isExpanded}>I was hidden</div> */}
         </div>
     )
 }

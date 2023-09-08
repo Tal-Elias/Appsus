@@ -29,10 +29,27 @@ export function NoteIndex() {
     }
 
     function onChangeBgColor(note, color) {
-        
+        const updatedNoteWithColor = {
+            ...note,
+            style: { ...note.style, backgroundColor: color },
+        }
+        setNotes(prevNotes =>
+            prevNotes.map((prevNote) =>
+                prevNote.id === note.id ? updatedNoteWithColor : prevNote
+            )
+        )
+        noteService.save(updatedNoteWithColor)
+            .then(() => {
+                showSuccessMsg('Note Background Color Updated!')
+            })
+            .catch((err) => {
+                console.error('Error updating note background color:', err)
+                showErrorMsg('Problem updating note background color')
+            })
     }
 
     function onSaveNote(note) {
+        console.log('note:', note)
         noteService.save(note)
             .then(savedNote => {
                 setNotes(prevNotes => [...prevNotes, savedNote])
@@ -74,7 +91,7 @@ export function NoteIndex() {
     function onSetFilterBy(filterBy) {
         setFilterBy(prevFilter => ({ ...prevFilter, ...filterBy }))
     }
-    
+
     if (!notes) return <div>Loading...</div>
     return (
         <section className="note-index">
@@ -91,14 +108,21 @@ export function NoteIndex() {
             <hr />
             <NoteAdd onSaveNote={onSaveNote} />
             {/* <NoteColorPalette /> */}
-            <NoteList notes={notes} onRemoveNote={onRemoveNote}
-                onSelectedNote={onSelectedNote} onChangeBgColor={onChangeBgColor} />
+            <NoteList notes={notes}
+                onRemoveNote={onRemoveNote}
+                onSelectedNote={onSelectedNote}
+                onChangeBgColor={onChangeBgColor}
+            />
             <div className={`note-edit-backdrop ${isNoteEditOpen ?
                 'note-edit-backdrop-entered' :
                 'note-edit-backdrop-exited'}`}
                 onClick={() => setIsNoteEditOpen(false)}>
-                {isEditNote && <NoteEdit onEditNote={onEditNote}
-                    selectedNote={selectedNote} onRemoveNote={onRemoveNote} />}
+                {isEditNote && <NoteEdit
+                    onEditNote={onEditNote}
+                    selectedNote={selectedNote}
+                    onRemoveNote={onRemoveNote}
+                    onChangeBgColor={onChangeBgColor}
+                />}
             </div>
         </section>
     )

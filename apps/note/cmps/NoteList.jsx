@@ -1,24 +1,13 @@
 import { NoteColorPalette } from "./NoteColorPalette.jsx"
-import { NotePreview } from "./NotePreview.jsx"
+// import { NotePreview } from "./NotePreview.jsx"
 import { NoteToolBar } from "./NoteToolBar.jsx"
+import { NoteTxt } from "./DynamicCmps/NoteTxt.jsx"
+import { NoteImg } from "./DynamicCmps/NoteImg.jsx"
+import { NoteTodos } from "./DynamicCmps/NoteTodos.jsx"
 
-export function NoteList({ notes, onRemoveNote, onSelectedNote, onChangeBgColor }) {
+const { useState, useEffect } = React
 
-    return (
-        <section className="note-list">
-            {
-                notes.map(note =>
-                    <div className="note-preview" key={note.id} onClick={() => onSelectedNote(note)} style={note.style}>
-                        <DynamicCmp type={note.type} info={note.info} onSelectedNote={onSelectedNote} />
-                        <NoteToolBar note={note} onRemoveNote={onRemoveNote} onChangeBgColor={onChangeBgColor} />
-                        <NoteColorPalette note={note} onChangeBgColor={onChangeBgColor} />
-                    </div>)
-            }
-        </section>
-    )
-}
-
-function DynamicCmp(props) {
+function NotePreview(props) {
     switch (props.type) {
         case 'NoteTxt':
             return <NoteTxt {...props} />
@@ -29,29 +18,41 @@ function DynamicCmp(props) {
     }
 }
 
-function NoteTxt({ info }) {
-    const { txt } = info
-    return (
-        <section className="note-txt">
-            <div className="txt">{txt}</div>
-        </section>
-    )
-}
+export function NoteList({ notes, onRemoveNote, onSelectedNote, onChangeBgColor }) {
 
-function NoteImg({ info }) {
-    const { url } = info
-    return (
-        <img src={url} alt="" />
-    )
-}
+    const [visibleNoteId, setVisibleNoteId] = useState(null)
+    const [isColorPaletteOpen, setColorPaletteOpen] = useState(false)
 
-function NoteTodos({ info }) {
-    const { todos } = info
+    function toggleColorPalette(noteId) {
+        if (visibleNoteId === noteId && isColorPaletteOpen) {
+            setVisibleNoteId(null)
+            setColorPaletteOpen(false)
+        } else {
+            setVisibleNoteId(noteId)
+            setColorPaletteOpen(true)
+        }
+    }
+
     return (
-        <ul>
+        <section className="note-list">
             {
-                todos.map(todo => <li key={todo.txt}>{todo.txt}</li>)
+                notes.map(note =>
+                    <div className="note-preview" key={note.id} onClick={() => onSelectedNote(note)} style={note.style}>
+                        <NotePreview type={note.type}
+                            info={note.info}
+                            onSelectedNote={onSelectedNote}
+                        />
+                        <NoteToolBar note={note}
+                            onRemoveNote={onRemoveNote}
+                            toggleColorPalette={toggleColorPalette}
+                        />
+                        {visibleNoteId === note.id && isColorPaletteOpen && (
+                            <NoteColorPalette note={note}
+                                onChangeBgColor={onChangeBgColor}
+                            />
+                        )}
+                    </div>)
             }
-        </ul>
+        </section>
     )
 }

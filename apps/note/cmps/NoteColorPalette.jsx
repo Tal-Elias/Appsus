@@ -1,14 +1,18 @@
 export function NoteColorPalette({ note, onChangeBgColor }) {
+    console.log('note:', note)
+
+    function handleColorPaletteClick(ev) {
+        ev.stopPropagation()
+    }
+
     return (
-        <section className="note-color-palette">
-            {/* <select className="color-select"> */}
-            <div onClick={() => onChangeBgColor(note, 'soft-blue')} value="soft-blue"></div>
-            <div onClick={() => onChangeBgColor(note, 'pale-green')} value="pale-green"></div>
-            <div onClick={() => onChangeBgColor(note, 'lavender')} value="lavender"></div>
-            <div onClick={() => onChangeBgColor(note, 'peach')} value="peach"></div>
-            <div onClick={() => onChangeBgColor(note, 'misty-rose')} value="misty-rose"></div>
-            <div onClick={() => onChangeBgColor(note, 'lilac')} value="lilac"></div>
-            {/* </select> */}
+        <section className="note-color-palette" onClick={handleColorPaletteClick}>
+            <div onClick={() => onChangeBgColor(note, '#87CEEB')} value="soft-blue"></div>
+            <div onClick={() => onChangeBgColor(note, '#98FB98')} value="pale-green"></div>
+            <div onClick={() => onChangeBgColor(note, '#E6E6FA')} value="lavender"></div>
+            <div onClick={() => onChangeBgColor(note, '#FFDAB9')} value="peach"></div>
+            <div onClick={() => onChangeBgColor(note, '#FFE4E1')} value="misty-rose"></div>
+            <div onClick={() => onChangeBgColor(note, '#C8A2C8')} value="lilac"></div>
         </section>
     )
 }

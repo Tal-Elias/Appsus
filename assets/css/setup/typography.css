@@ -19,12 +19,25 @@
     font-family: fa;
 }
 
+/* Note */
 .fa.remove::before {
     content: "\f2ed";
 }
 
 .fa.bg-color::before {
     content: "\f53f";
+}
+
+.fa.duplicate::before {
+    content: "\f24d";
+}
+
+.fa.image::before {
+    content: "\f03e";
+}
+
+.fa.list::before {
+    content: "\f14a";
 }
 
 /* FA mail */

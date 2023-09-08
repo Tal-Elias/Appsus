@@ -1,16 +1,22 @@
 .note-add {
+  position: relative;
+
   display: flex;
   justify-content: center;
   align-items: center;
+
   padding: 10px;
   margin-block-end: 2em;
 }
 
 .note-add form {
   width: 30vw;
+  position: relative;
 }
 
 .note-add input {
+  position: relative;
+
   width: 100%;
   padding: 10px;
   border: none;
@@ -19,4 +25,16 @@
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.4);
   font-size: 14px;
   outline: none;
+}
+
+.note-add .note-type {
+  position: absolute;
+  right: 5px;
+  top: 9px;
+  display: block;
+}
+
+.note-add button {
+  background-color: transparent;
+  border: none;
 }
