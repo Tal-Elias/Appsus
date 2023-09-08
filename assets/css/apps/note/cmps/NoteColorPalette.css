@@ -1,13 +1,21 @@
-.note-color-pallete {
+.note-color-palette {
     position: absolute;
     display: flex;
+    padding: 5px;
+    top: 100%;
+    /* outline: 1px solid black; */
 }
 
 .note-color-palette div {
     width: 30px;
     height: 30px;
+    margin-inline-start: .5em;
     border-radius: 2em;
     cursor: pointer;
+}
+
+.note-color-palette div:last-of-type {
+    margin-inline-end: .5em;
 }
 
 .note-color-palette div:hover {

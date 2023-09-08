@@ -12,6 +12,20 @@ export function NoteEdit({ onEditNote, selectedNote, onRemoveNote, onChangeBgCol
         const field = target.name
         let value = target.value
 
+        switch (target.type) {
+            case 'number':
+            case 'range':
+                value = +value || ''
+                break;
+
+            case 'checkbox':
+                value = target.checked
+                break
+
+            default:
+                break;
+        }
+
         setNoteToEdit(prevNoteToEdit => {
             if (field === 'txt') {
                 return {
@@ -28,23 +42,48 @@ export function NoteEdit({ onEditNote, selectedNote, onRemoveNote, onChangeBgCol
         onEditNote(noteToEdit)
     }
 
-    // function onEditNote(ev) {
-    //     ev.preventDefault()
-    //     noteService.save(noteToEdit)
-    //         .then(() => console.log('added'))
-    //         .catch(err => console.log('err:', err))
-    // }
-
     return (
-        <div className="note-edit">
-            {/* <NotePreview note={selectedNote} onRemoveNote={onRemoveNote} /> */}
-            <form onSubmit={(ev) => handleEdit(ev)}>
-                <input onChange={handleChange} value={noteToEdit.info.txt} type="text" name="txt" />
-            </form>
-            {/* <pre>{JSON.stringify(selectedNote, null, 2)}</pre> */}
-            {/* <button onClick={() => onRemoveNote(selectedNote.id)}>X</button> */}
-            <NoteToolBar note={selectedNote} onRemoveNote={onRemoveNote} onChangeBgColor={onChangeBgColor}/>
-            {/* TOOL-BAR */}
+        <div className="note-edit" style={selectedNote.style}>
+            <DynamicCmp type={selectedNote.type} info={selectedNote.info} />
+            <NoteToolBar note={selectedNote} onRemoveNote={onRemoveNote} onChangeBgColor={onChangeBgColor} />
         </div>
+    )
+}
+
+function DynamicCmp(props) {
+    switch (props.type) {
+        case 'NoteTxt':
+            return <NoteTxt {...props} />
+        case 'NoteImg':
+            return <NoteImg {...props} />
+        case 'NoteTodos':
+            return <NoteTodos {...props} />
+    }
+}
+
+function NoteTxt({ info }) {
+    const { txt } = info
+    return (
+        <section className="note-txt">
+            <div className="txt">{txt}</div>
+        </section>
+    )
+}
+
+function NoteImg({ info }) {
+    const { url } = info
+    return (
+        <img src={url} alt="" />
+    )
+}
+
+function NoteTodos({ info }) {
+    const { todos } = info
+    return (
+        <ul>
+            {
+                todos.map(todo => <li key={todo.txt}>{todo.txt}</li>)
+            }
+        </ul>
     )
 }

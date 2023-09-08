@@ -1,16 +1,21 @@
 .note-preview {
-    /* display: flex;
+    position: relative;
+    display: flex;
     flex-direction: column;
-    justify-content: space-between; */
+    justify-content: space-between;
 
-    /* width: 240px; */
-    /* min-height: 130px;
-    margin-block-end: 1em;
+    min-width: 240px;
     break-inside: avoid;
-    background-color: aliceblue;
-    border-radius: 10px; */
+    min-height: 130px;
+    margin-block-end: 1em;
+    background-color: white;
+    border-radius: 8px;
+    outline: 1px solid #d3d3d3;
+
+    /* box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2); */
+    transition: transform 0.2s ease-in-out;
 }
 
-.note-preview .txt{
-    padding: 10px;
+.note-preview:hover {
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
 }

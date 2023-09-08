@@ -28,8 +28,8 @@ export function NoteIndex() {
         setIsNoteEditOpen(true)
     }
 
-    function onChangeBgColor() {
-
+    function onChangeBgColor(note, color) {
+        
     }
 
     function onSaveNote(note) {

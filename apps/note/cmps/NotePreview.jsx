@@ -1,25 +1,60 @@
-import { NoteColorPalette } from "./NoteColorPalette.jsx"
-import { NoteToolBar } from "./NoteToolBar.jsx"
+import { noteService } from "../services/note.service.js"
 
-export function NotePreview({ note, onRemoveNote, onSelectedNote, onChangeBgColor }) {
+const { useState, useEffect } = React
+
+export function NotePreview({ note, onSelectedNote }) {
+    // console.log('note:', note.id)
+    // const [note, setNote] = useState(note)
+
+    // useEffect(() => {
+    //     noteService.query()
+    //         .then(setNote)
+    //         .catch(err => console.log('err:', err))
+    // }, [])
+
+    if (!note) return <div>loading...</div>
 
     return (
-        <div onClick={() => onSelectedNote(note)} className="note-preview">
-            <div onClick={() => onSelectedNote(note)}>
-            <div className="txt">{note.info.txt}</div>
-            {/* <NoteColorPalette /> */}
-            </div>
-            {/* <NoteToolBar note={note} onRemoveNote={onRemoveNote} onChangeBgColor={onChangeBgColor}/> */}
-        </div>
+        <section className="note-preview" style={note.style}>
+            <DynamicCmp key={note.id} type={note.type} info={note.info} />
+        </section>
     )
 }
 
+function DynamicCmp(props) {
+    switch (props.type) {
+        case 'NoteTxt':
+            return <NoteTxt {...props} />
+        case 'NoteImg':
+            return <NoteImg {...props} />
+        case 'NoteTodos':
+            return <NoteTodos {...props} />
+    }
+}
 
-// return (
-//     <div className="note-preview" onClick={() => onSelectedNote(note)}>
-//         <div className="txt">{note.info.txt}</div>
-//         <NoteToolBar note={note} onRemoveNote={onRemoveNote} />
-//         <pre>{JSON.stringify(note, null, 2)}</pre>
-//         <button onClick={() => onRemoveNote(note.id)}>X</button>
-//     </div>
-// )
+function NoteTxt({ info }) {
+    const { txt } = info
+    return (
+        <section className="note-txt">
+            <div className="txt">{txt}</div>
+        </section>
+    )
+}
+
+function NoteImg({ info }) {
+    const { url } = info
+    return (
+        <img src={url} alt="" />
+    )
+}
+
+function NoteTodos({ info }) {
+    const { todos } = info
+    return (
+        <ul>
+            {
+                todos.map(todo => <li key={todo.txt}>{todo.txt}</li>)
+            }
+        </ul>
+    )
+}

@@ -18,10 +18,10 @@
     content: "\f2ed";
 }
 
-
 .fa.bg-color::before {
     content: "\f53f";
 }
+
 /* FA mail */
 .fa.inbox::before {
     content: "\f01c";
