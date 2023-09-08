@@ -17,7 +17,9 @@ function defaultCriteria() {
         lables: []
     }
 }
+
 _createMails()
+
 export const mailService = {
     query,
     get,
@@ -25,7 +27,8 @@ export const mailService = {
     save,
     getEmptyMail,
     getDefaultFilter,
-    setIsReadById
+    setIsReadById,
+    setStarredById
 
 }
 
@@ -58,12 +61,12 @@ function query(filterBy = defaultCriteria()) {
 
 function get(mailId) {
     return asyncStorageService.get(MAIL_KEY, mailId)
-    .then(mail => {
-        mail = _setNextPrevEmailId(mail)
-        return mail
-    })
+        .then(mail => {
+            mail = _setNextPrevEmailId(mail)
+            return mail
+        })
 }
-
+//check if readbyid work
 function setIsReadById(mailId) {
     let mail = get(mailId).then((mail) => {
         mail.isRead = !mail.isRead
@@ -71,6 +74,15 @@ function setIsReadById(mailId) {
 
     }).catch(err => console.log(err))
 
+}
+
+function setStarredById(mailId) {
+    console.log(mailId)
+    return asyncStorageService.get(mailId)
+        .then((mail) => {
+            mail.isStarred = !mail.isStarred
+            return save(mail)
+        }).catch(err => console.log('err', err))
 }
 
 function remove(mailId) {
@@ -109,6 +121,7 @@ function getEmptyMail() {
         subject: '',
         body: '',
         isRead: false,
+        isStarred: null,
         sentAt: null,
         removedAt: null,
         from: '',
@@ -116,7 +129,7 @@ function getEmptyMail() {
     }
 }
 
-function _setNextPrevEmailId(mail){
+function _setNextPrevEmailId(mail) {
     return asyncStorageService.query(MAIL_KEY).then((mails) => {
         const mailIdx = mails.findIndex((currMail) => currMail.id === mail.id)
         const nextMail = mails[mailIdx + 1] ? mails[mailIdx + 1] : mails[0]

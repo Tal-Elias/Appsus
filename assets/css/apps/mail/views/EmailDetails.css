@@ -1,9 +1,12 @@
 
-.mail-body-text{
+/* .mail-body-text{
 
 
+} */
+
+.mail-details-header{
+    font-size: 1.5em;
 }
-
 .mail-indexes-arrows{
    gap: 50px;
    height: 20px;

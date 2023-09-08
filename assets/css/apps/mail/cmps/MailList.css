@@ -1,11 +1,29 @@
  /* mail list */
- .mail-table{
-   /* font-family: 'OpenSans'; */
-    grid-row: 1 /span 2;
-    grid-column: 2; 
- }
- table tr:hover{
-   box-shadow: inset 1px 0 0 #dadce0, inset -1px 0 0 #dadce0, 0 1px 2px 0 rgb(60 64 67 / 30%), 0 1px 3px 1px rgb(60 64 67 / 15%);
-    z-index: 2;
-    cursor: pointer;
- }
+
+
+ul{
+  list-style: none;
+}
+
+.mail-list li:hover{
+  box-shadow: inset 1px 0 0 #dadce0, inset -1px 0 0 #dadce0, 0 1px 2px 0 rgb(60 64 67 / 30%), 0 1px 3px 1px rgb(60 64 67 / 15%);
+  z-index: 1;
+  cursor: pointer;
+}
+
+.mail-list .options {
+  /* display: none; */
+  right: 0;
+  background-color:var(--main-background);
+  position: absolute;
+  color: var(--txt);
+}
+
+.mail-list .options>* {
+  border-radius: 50%;
+  background-color: transparent;
+  border: none;
+  font-size: 1em;
+  padding: 12px;
+  margin: 0 3px;
+}

@@ -2,7 +2,7 @@
   margin-top: 10px;
   display: flex;
   flex-direction: column;  
- gap:50px
+ gap:35px
 }
 
 .email-folder-list button{
@@ -23,5 +23,5 @@ button.fa{
 button.fa:hover{
 background-color: #f1f3f4;
 cursor: pointer;
-padding: 10px;
+
 }

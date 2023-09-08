@@ -4,8 +4,36 @@
     padding: 0 15px;
     position: relative;
     /* position: relative; */
+    text-align: center;
+    
 }
 
 .read{
     background-color: #f2f6fc;
+}
+
+.mail-preview .fa i:hover{
+background-color: var(--main-bg-color)
+}
+.star{
+  align-self: center;
+  z-index: 100;
+  opacity: 0.4;
+  color:gray;
+}
+
+.star:hover{
+    color:yellow;
+}
+.content{
+    align-items: left;
+    width: 0;
+    flex-grow: 1;
+}
+.content.mail-body p{
+ color: lightslategrey;
+}
+
+.mail-preview.content{
+    justify-content: space-between;
 }
