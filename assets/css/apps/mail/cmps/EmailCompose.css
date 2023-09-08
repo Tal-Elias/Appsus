@@ -1,7 +1,7 @@
 .email-compose-wrapper {
     width: 45%;
     height: 55%;
-    position: absolute;
+    position: fixed;
     left: 5%;
     bottom: 20px;
     background-color: #fff;
@@ -22,7 +22,7 @@ section.mail-compose{
     display: flex;
     flex-direction: column;
     
-    }
+}
 
 .email-compose input,
 .email-compose textarea{
@@ -32,7 +32,7 @@ section.mail-compose{
 
 
 .email-compose-header h3{
-    font-family: OpenSans, sans-serif;
+    /* font-family: OpenSans, sans-serif; */
     margin: 0;
     font-size: 1em;
 }
@@ -43,13 +43,12 @@ section.mail-compose{
 
 .email-compose input{
     border-bottom: 1px solid lightslategray;
-    /* border-top: 1px solid lightslategray; */
 }
 
 .email-compose button{
     margin: 15px 0;
     background-color: #0b57d0;
-    font-family: OpenSans, sans-serif;
+    /* font-family: OpenSans, sans-serif; */
     font-size: 1em;
     color: #fff;
     padding:5px 1em;

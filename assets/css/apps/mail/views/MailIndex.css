@@ -1,10 +1,13 @@
- /* mail index  */
+ mail index 
  .mail-index .mail-header{
     display: flex;
     align-items: center;
     justify-content: center;
  }
 
+ .mail-header input{
+ justify-content: center;
+}
  .mail-index .note-icon{
     padding: 10px;
     width: 100px;
@@ -16,7 +19,7 @@ grid-template-rows: 1fr 2fr;
 
  }
  .side-menu{
-    background-color: #f5f5f6;
+    /* background-color: #f5f5f6; */
     height: 93vh;
  }
  .compose-button {padding: 1em 1.2em;
@@ -32,5 +35,6 @@ grid-template-rows: 1fr 2fr;
     display: flex;
     transition: width .3s;
     margin-inline-end:12px;
-    max-width: 45%;
+    max-width: 60%;
+    text-align: center;
    }

@@ -1,7 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Edu+VIC+WA+NT+Beginner&display=swap');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css');
+
+
 @font-face {
     font-family: roboto;
     src: url('../../fonts/roboto/Roboto-Regular.ttf');
 }
+
 
 /* FONT AWSOME */
 
@@ -26,12 +31,52 @@
 .fa.inbox::before {
     content: "\f01c";
 }
+
 .fa.sent::before {
     content: "\f1d8";
 }
+
 .fa.trash::before {
     content: "\f2ed";
 }
+
 .fa.draft::before {
     content: "\e4eb";
+}
+
+.fa.unstarred::before {
+    content: "\2606";
+}
+
+.fa.starred::before {
+    content: "\f005";
+
+}
+
+.fa.read::before {
+    content: "\f2b6";
+}
+
+.fa.unread::before {
+    content: "\f0e0";
+}
+
+.fa.arrow-left::before {
+    content: "\f060";
+}
+
+.fa.arrow-next-right::before {
+    content: "\f054";
+}
+
+.fa.arrow-next-left::before {
+    content: "\f053";
+}
+
+.fa.user::before {
+    content: "\f2bd";
+    border-radius: 50px;
+    color: #4ac3ea;
+    font-size: 50px;
+    background: blue;
 }
