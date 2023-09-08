@@ -1,3 +1,12 @@
+.note-toolbar {
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out;
+}
+
+.note-toolbar:hover {
+    opacity: 1;
+}
+
 .note-toolbar button {
     position: relative;
     /* font-size: 1rem; */
@@ -12,18 +21,21 @@
     transition: box-shadow 0.3s;
 }
 
-.color-select {
-    /* appearance: none; */
+.note-toolbar .bg-color {
+    position: relative;
+}
+
+/* .color-select {
     padding: 5px;
     background-color: transparent;
     border: none;
-  }
+  } */
 
-.note-toolbar .color-select option {
+/* .note-toolbar .color-select option {
     padding: 5px;
-}
+} */
 
-.color-select option[value="soft-blue"] {
+/* .color-select option[value="soft-blue"] {
     background-color: var(--clr-bg-1);
 }
 
@@ -45,7 +57,7 @@
 
 .color-select option[value="lilac"] {
     background-color: var(--clr-bg-6);
-}
+} */
 
 
 

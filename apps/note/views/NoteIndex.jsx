@@ -4,6 +4,7 @@ import { NoteList } from "../cmps/NoteList.jsx"
 import { NoteAdd } from "../cmps/NoteAdd.jsx"
 import { NoteEdit } from "../cmps/NoteEdit.jsx"
 import { showErrorMsg, showSuccessMsg } from '../../../services/event-bus.service.js'
+import { NoteColorPalette } from "../cmps/NoteColorPalette.jsx"
 
 const { useState, useEffect } = React
 const { Link, NavLink } = ReactRouterDOM
@@ -73,7 +74,7 @@ export function NoteIndex() {
     function onSetFilterBy(filterBy) {
         setFilterBy(prevFilter => ({ ...prevFilter, ...filterBy }))
     }
-
+    
     if (!notes) return <div>Loading...</div>
     return (
         <section className="note-index">
@@ -89,6 +90,7 @@ export function NoteIndex() {
             </div>
             <hr />
             <NoteAdd onSaveNote={onSaveNote} />
+            {/* <NoteColorPalette /> */}
             <NoteList notes={notes} onRemoveNote={onRemoveNote}
                 onSelectedNote={onSelectedNote} onChangeBgColor={onChangeBgColor} />
             <div className={`note-edit-backdrop ${isNoteEditOpen ?

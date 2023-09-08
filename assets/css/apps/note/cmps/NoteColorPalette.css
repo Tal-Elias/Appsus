@@ -1,0 +1,39 @@
+.note-color-pallete {
+    position: absolute;
+    display: flex;
+}
+
+.note-color-palette div {
+    width: 30px;
+    height: 30px;
+    border-radius: 2em;
+    cursor: pointer;
+}
+
+.note-color-palette div:hover {
+    /* background-color: lightgrey; */
+}
+
+.note-color-palette div[value="soft-blue"] {
+    background-color: var(--clr-bg-1);
+}
+
+.note-color-palette div[value="pale-green"] {
+    background-color: var(--clr-bg-2);
+}
+
+.note-color-palette div[value="lavender"] {
+    background-color: var(--clr-bg-3);
+}
+
+.note-color-palette div[value="peach"] {
+    background-color: var(--clr-bg-4);
+}
+
+.note-color-palette div[value="misty-rose"] {
+    background-color: var(--clr-bg-5);
+}
+
+.note-color-palette div[value="lilac"] {
+    background-color: var(--clr-bg-6);
+}
