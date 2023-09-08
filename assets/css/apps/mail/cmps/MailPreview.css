@@ -1,5 +1,11 @@
 .mail-preview{
-    /* line-height: 2.8em; */
-    
+    gap: 10px;
+    line-height: 2.8em;
+    padding: 0 15px;
+    position: relative;
     /* position: relative; */
+}
+
+.read{
+    background-color: #f2f6fc;
 }

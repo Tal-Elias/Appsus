@@ -15,9 +15,11 @@ export function MailPreview({mail,onRemoveMail,onMailRead}){
             navigate(`/mail/${mail.id}`)
         }}>
         {/* <td onClick={()=>onMailRead(mail.id)}/> */}
-        <td>{mail.isRead? 'read':'unread'}</td>
+        <td>{mail.isRead? <button className="fa read"></button>:<button className="fa unread"></button>}</td>
+        <td>{mail.isStarred? <button className="fa starred"></button>:<button className="fa unstarred"></button>}</td>
         <td>{mail.from}</td>
         <td>{mail.subject}</td>
+        <td>{mail.body}</td>
         <td>{mail.sentAt}</td>
         </tr>
         </React.Fragment>

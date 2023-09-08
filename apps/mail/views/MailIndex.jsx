@@ -61,12 +61,12 @@ export function MailIndex() {
     if (!mails) return <div>loading...</div>
     return (
         <section className=" mail-index  " >
-            <div className="mail-header">
+            <div className="mail-header flex">
                 <div className="fa note-icon">ICON</div>
                 <MailFilter filterBy={filterBy} onSetFilterBy={onSetFilterBy} />
             </div>
 
-         <section className="mail-content grid">
+         <section className="mail-content flex">
             <section className="side-menu flex column">
                 {isAddingMail && <EmailCompose handleCloseModal={handleCloseModal} onSentMail={onSentMail} />}
                 <button className="compose-button" onClick={() => setIsAddingMail(!isAddingMail)}>New mail</button>

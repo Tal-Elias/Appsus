@@ -8,13 +8,15 @@ const loggedinUser = {
     email: 'user@appsus.com',
     fullname: 'Mahatma Appsus'
 }
-const criteria = {
-    status: 'inbox/sent/trash/draft',
-    txt: '', 
-    isRead: true, // (optional property, if missing: show all)
-    isStared: true, // (optional property, if missing: show all)
-    lables: ['important', 'romantic'] // has any of the labels
-   }
+function defaultCriteria() {
+    return {
+        status: '',
+        txt: '',
+        isRead: null,
+        isStared: null,
+        lables: []
+    }
+}
 _createMails()
 export const mailService = {
     query,
@@ -27,37 +29,49 @@ export const mailService = {
 
 }
 
-function query(filterBy = {}) {
+function query(filterBy = defaultCriteria()) {
     return asyncStorageService.query(MAIL_KEY)
-    .then(mails=>{
-       
-        if (filterBy.txt) {
-            const regExp = new RegExp(filterBy.txt, 'i')
-            mails = mails.filter(mail => regExp.test(mail.body)||regExp.test(mail.subject))
-          }
-          console.log(mails)
-          if (filterBy.isRead) {
-            mails = mails.filter(mail => mail.isRead)
-          }
-          if (filterBy.isRead) {
-            mails = mails.filter(mail => mail.isRead)
-          }
-          return mails
-    })
+        .then(mails => {
+            if (filterBy.txt) {
+                const regExp = new RegExp(filterBy.txt, 'i')
+                mails = mails.filter((mail) =>
+                    regExp.test(mail.body) || regExp.test(mail.subject) ||
+                    regExp.test(mail.from) || regExp.test(mail.to)
+                )
+            }
+
+            if (filterBy.status) {
+                mails = mails.filter(mail => mail.status.includes(filterBy.status))
+            }
+
+            if (filterBy.isRead) {
+                mails = mails.filter(mail => mail.isRead)
+            }
+
+            if (filterBy.isRead) {
+                mails = mails.filter(mail => mail.isRead)
+            }
+            return mails
+        })
 
 }
+
 function get(mailId) {
     return asyncStorageService.get(MAIL_KEY, mailId)
+    .then(mail => {
+        mail = _setNextPrevEmailId(mail)
+        return mail
+    })
 }
 
-function setIsReadById(mailId){
-    let mail= get(mailId).then((mail)=>{
-       mail.isRead= !mail.isRead
-        
-       
-    }).catch(err=>console.log(err))
-   
-}       
+function setIsReadById(mailId) {
+    let mail = get(mailId).then((mail) => {
+        mail.isRead = !mail.isRead
+
+
+    }).catch(err => console.log(err))
+
+}
 
 function remove(mailId) {
     return asyncStorageService.remove(MAIL_KEY, mailId)
@@ -71,13 +85,13 @@ function save(mail) {
     }
 }
 
-function getDefaultFilter(){
-    return{
-        status:'',
+function getDefaultFilter() {
+    return {
+        status: '',
         txt: '',
-        isRead:null,
-        isStared:null,
-        lables:[]
+        isRead: null,
+        isStared: null,
+        lables: []
     }
 }
 // function setFilterBy(filterBy = {}) {
@@ -88,13 +102,7 @@ function getDefaultFilter(){
 //     return gFilterBy
 //   }
 
-function getNextMailId(mailId) {
-    return asyncStorageService.query(MAIL_KEY).then(mails => {
-        var idx = mails.findIndex(book => book.id === bookId)
-        if (idx === books.length - 1) idx = -1
-        return books[idx + 1].id
-    })
-}
+
 
 function getEmptyMail() {
     return {
@@ -106,6 +114,17 @@ function getEmptyMail() {
         from: '',
         to: ''
     }
+}
+
+function _setNextPrevEmailId(mail){
+    return asyncStorageService.query(MAIL_KEY).then((mails) => {
+        const mailIdx = mails.findIndex((currMail) => currMail.id === mail.id)
+        const nextMail = mails[mailIdx + 1] ? mails[mailIdx + 1] : mails[0]
+        const prevMail = mails[mailIdx - 1] ? mails[mailIdx - 1] : mails[mails.length - 1]
+        mail.nextMailId = nextMail.id
+        mail.prevMailId = prevMail.id
+        return mail
+    })
 }
 
 function _createMails() {
