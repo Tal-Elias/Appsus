@@ -34,7 +34,7 @@ export function NoteAdd({ onSaveNote }) {
     return (
         <div className="note-add">
             <form onSubmit={(ev) => handleAdd(ev)}>
-                <div className="input-wrapper">
+                <div className="add-input-wrapper">
                     <input
                         // onClick={() => setIsExpanded(!isExpanded)}
                         onChange={handleChange}

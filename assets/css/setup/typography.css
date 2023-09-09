@@ -14,9 +14,17 @@
     font-family: fa;
     src: url("../../fonts/fa/fa-solid-900.ttf");
 }
+/* @font-face {
+    font-family: fa-solid;
+    src: url("../../fonts/fa/fa-solid-900.ttf");
+} */
 
 .fa::before {
     font-family: fa;
+}
+
+.fa-solid::before {
+    font-family: fa-solid;
 }
 
 /* Note */
@@ -38,6 +46,10 @@
 
 .fa.list::before {
     content: "\f14a";
+}
+
+.fa.search::before {
+    content: "\f002";
 }
 
 /* FA mail */

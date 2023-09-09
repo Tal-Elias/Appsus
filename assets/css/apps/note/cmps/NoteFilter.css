@@ -1,22 +1,36 @@
 .note-filter {
-    /* display: flex;
+  position: relative;
+  /* display: flex;
     justify-content: center;
     align-items: center; */
-    padding: 10px;
-    /* margin-block-end: 1em; */
-  }
-  
-  .note-filter form {
-    width: 40vw;
-  }
-  
-  .note-filter input {
-    width: 100%;
-    padding: 15px;
-    border: none;
-    border-radius: 5px;
-    background-color: #f1f3f4;
-    /* box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.4); */
-    font-size: 14px;
-    outline: none;
-  }
+  padding: 10px;
+  /* margin-block-end: 1em; */
+}
+
+.note-filter form {
+  width: 720px;
+}
+
+.note-filter input {
+  width: 100%;
+  padding: 15px;
+  padding-inline-start: 3em;
+  border: none;
+  border-radius: 5px;
+  background-color: #f1f3f4;
+  /* box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.4); */
+  font-size: 14px;
+  outline: none;
+}
+
+.note-filter input::placeholder {
+  margin-inline-start: 2em;
+}
+
+.note-filter .fa {
+  position: absolute;
+  left: 1.5em;
+  bottom: 1.5em;
+  display: block;
+  color: var(--clr1);
+}

@@ -26,7 +26,7 @@
     margin-inline-end: .5em;
 }
 
-.note-color-palette div:hover {
+/* .note-color-palette div:hover {
     outline: 1px solid lightgrey;
 }
 
@@ -52,4 +52,4 @@
 
 .note-color-palette div[value="lilac"] {
     background-color: var(--clr-bg-6);
-}
+} */
