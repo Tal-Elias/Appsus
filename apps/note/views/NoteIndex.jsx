@@ -1,13 +1,12 @@
 import { noteService } from "../../note/services/note.service.js"
-import { NoteFilter } from "../cmps/NoteFilter.jsx"
+import { utilService } from "../../../services/util.service.js"
+import { NoteHeader } from "../cmps/NoteHeader.jsx"
 import { NoteList } from "../cmps/NoteList.jsx"
 import { NoteAdd } from "../cmps/NoteAdd.jsx"
 import { NoteEdit } from "../cmps/NoteEdit.jsx"
 import { showErrorMsg, showSuccessMsg } from '../../../services/event-bus.service.js'
-import { NoteColorPalette } from "../cmps/NoteColorPalette.jsx"
 
 const { useState, useEffect } = React
-const { Link, NavLink } = ReactRouterDOM
 
 export function NoteIndex() {
     const [notes, setNotes] = useState(null)
@@ -19,8 +18,12 @@ export function NoteIndex() {
     useEffect(() => {
         noteService.query(filterBy)
             .then(setNotes)
-            .catch(err => console.log('err:', err))
+            .catch(err => console.error('Error geting notes:', err))
     }, [filterBy])
+
+    function loadNotes() {
+        noteService.query(filterBy).then(setNotes)
+    }
 
     function onSelectedNote(note) {
         setIsEditNote(true)
@@ -28,35 +31,14 @@ export function NoteIndex() {
         setIsNoteEditOpen(true)
     }
 
-    function onChangeBgColor(note, color) {
-        const updatedNoteWithColor = {
-            ...note,
-            style: { ...note.style, backgroundColor: color },
-        }
-        setNotes(prevNotes =>
-            prevNotes.map((prevNote) =>
-                prevNote.id === note.id ? updatedNoteWithColor : prevNote
-            )
-        )
-        noteService.save(updatedNoteWithColor)
-            .then(() => {
-                showSuccessMsg('Note Background Color Updated!')
-            })
-            .catch((err) => {
-                console.error('Error updating note background color:', err)
-                showErrorMsg('Problem updating note background color')
-            })
-    }
-
     function onSaveNote(note) {
-        console.log('note:', note)
         noteService.save(note)
             .then(savedNote => {
                 setNotes(prevNotes => [...prevNotes, savedNote])
                 showSuccessMsg('Note Added!')
             })
             .catch(err => {
-                console.log('err:', err)
+                console.error('Error saving note:', err)
                 showErrorMsg('Problem adding note')
             })
     }
@@ -70,7 +52,7 @@ export function NoteIndex() {
                 showSuccessMsg('Note Edited!')
             })
             .catch(err => {
-                console.log('err:', err)
+                console.error('Error editing note:', err)
                 showErrorMsg('Problem adding note')
             })
     }
@@ -83,8 +65,36 @@ export function NoteIndex() {
                 showSuccessMsg('Note Removed!')
             })
             .catch(err => {
-                console.log('err:', err)
+                console.error('Error removing note:', err)
                 showErrorMsg('Problem removing note')
+            })
+    }
+
+    function onDuplicateNote(note) {
+        const newNote = { ...note, id: null }
+        noteService.save(newNote)
+            .then(note => {
+                setNotes(prevNotes => [...prevNotes, note])
+                showSuccessMsg('Note Duplicated')
+            })
+            .catch(err => {
+                console.log('err:', err)
+                showErrorMsg('Problem duplicating note')
+            })
+    }
+
+    function onChangeBgColor(note, color) {
+        const newNote = { ...note }
+        newNote.style = { backgroundColor: color }
+        setNotes((prevNotes) =>
+            prevNotes.map((note) => note.id === newNote.id ? newNote : note))
+        noteService.save(newNote)
+            .then(() => {
+                console.log('Note background changed!');
+            })
+            .catch(err => {
+                console.log('err:', err)
+                showErrorMsg('Problem changing background')
             })
     }
 
@@ -92,26 +102,22 @@ export function NoteIndex() {
         setFilterBy(prevFilter => ({ ...prevFilter, ...filterBy }))
     }
 
+    function togglePinned(note) {
+        const newNote = { ...note, isPinned: !note.isPinned }
+        noteService.save(newNote).then(loadNotes)
+    }
+
     if (!notes) return <div>Loading...</div>
     return (
         <section className="note-index">
-            <div className="note-header">
-                <div className="fa note-icon">ICON</div>
-                <NoteFilter filterBy={filterBy} onSetFilterBy={onSetFilterBy} />
-                {/* <nav>
-                    <NavLink to="/">Home</NavLink>
-                    <NavLink to="/about">About</NavLink>
-                    <NavLink to="/mail">Mail</NavLink>
-                    <NavLink to="/note">Note</NavLink>
-                </nav> */}
-            </div>
-            <hr />
+            <NoteHeader filterBy={filterBy} onSetFilterBy={onSetFilterBy} />
             <NoteAdd onSaveNote={onSaveNote} />
-            {/* <NoteColorPalette /> */}
             <NoteList notes={notes}
                 onRemoveNote={onRemoveNote}
                 onSelectedNote={onSelectedNote}
+                togglePinned={togglePinned}
                 onChangeBgColor={onChangeBgColor}
+                onDuplicateNote={onDuplicateNote}
             />
             <div className={`note-edit-backdrop ${isNoteEditOpen ?
                 'note-edit-backdrop-entered' :
@@ -122,6 +128,8 @@ export function NoteIndex() {
                     selectedNote={selectedNote}
                     onRemoveNote={onRemoveNote}
                     onChangeBgColor={onChangeBgColor}
+                    onSaveNote={onSaveNote}
+                    onDuplicateNote={onDuplicateNote}
                 />}
             </div>
         </section>

@@ -1,5 +1,4 @@
 import { NoteColorPalette } from "./NoteColorPalette.jsx"
-// import { NotePreview } from "./NotePreview.jsx"
 import { NoteToolBar } from "./NoteToolBar.jsx"
 import { NoteTxt } from "./DynamicCmps/NoteTxt.jsx"
 import { NoteImg } from "./DynamicCmps/NoteImg.jsx"
@@ -18,18 +17,18 @@ function NotePreview(props) {
     }
 }
 
-export function NoteList({ notes, onRemoveNote, onSelectedNote, onChangeBgColor }) {
+export function NoteList({ notes, onRemoveNote, onSelectedNote, onChangeBgColor, onDuplicateNote, togglePinned }) {
 
     const [visibleNoteId, setVisibleNoteId] = useState(null)
-    const [isColorPaletteOpen, setColorPaletteOpen] = useState(false)
+    const [isColorPaletteOpen, setIsColorPaletteOpen] = useState(false)
 
     function toggleColorPalette(noteId) {
         if (visibleNoteId === noteId && isColorPaletteOpen) {
             setVisibleNoteId(null)
-            setColorPaletteOpen(false)
+            setIsColorPaletteOpen(false)
         } else {
             setVisibleNoteId(noteId)
-            setColorPaletteOpen(true)
+            setIsColorPaletteOpen(true)
         }
     }
 
@@ -41,10 +40,12 @@ export function NoteList({ notes, onRemoveNote, onSelectedNote, onChangeBgColor 
                         <NotePreview type={note.type}
                             info={note.info}
                             onSelectedNote={onSelectedNote}
+                            togglePinned={togglePinned}
                         />
                         <NoteToolBar note={note}
                             onRemoveNote={onRemoveNote}
                             toggleColorPalette={toggleColorPalette}
+                            onDuplicateNote={onDuplicateNote}
                         />
                         {visibleNoteId === note.id && isColorPaletteOpen && (
                             <NoteColorPalette note={note}

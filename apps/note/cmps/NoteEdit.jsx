@@ -1,25 +1,31 @@
-import { NotePreview } from "./NotePreview.jsx"
-import { noteService } from "../services/note.service.js"
 import { NoteToolBar } from "./NoteToolBar.jsx"
 import { NoteColorPalette } from "./NoteColorPalette.jsx"
+import { noteService } from "../services/note.service.js"
 
 const { useState, useEffect } = React
 
-export function NoteEdit({ onEditNote, selectedNote, onRemoveNote, onChangeBgColor }) {
+export function NoteEdit({ onEditNote, selectedNote, onRemoveNote, onChangeBgColor, onDuplicateNote }) {
 
     const [noteToEdit, setNoteToEdit] = useState(selectedNote)
-    const [isColorPaletteOpen, setColorPaletteOpen] = useState(false)
+    const [isColorPaletteOpen, setIsColorPaletteOpen] = useState(false)
     const [answersMap, setAnswersMap] = useState({})
 
     useEffect(() => {
-        
-    }, [])
+        setNoteToEdit(selectedNote)
+        return () => {
+            if (noteToEdit.info !== selectedNote.info) onEditNote(noteToEdit)
+        }
+    }, [selectedNote])
 
     function onChangeVal(id, val) {
 
         const answersToSave = { ...answersMap }
         answersToSave[id] = val
         setAnswersMap(answersToSave)
+
+        let newNote = { ...noteToEdit }
+        newNote.info.txt = val
+        setNoteToEdit(newNote)
     }
 
     function handleNoteClick(ev) {
@@ -28,9 +34,9 @@ export function NoteEdit({ onEditNote, selectedNote, onRemoveNote, onChangeBgCol
 
     function toggleColorPalette() {
         if (isColorPaletteOpen) {
-            setColorPaletteOpen(false)
+            setIsColorPaletteOpen(false)
         } else {
-            setColorPaletteOpen(true)
+            setIsColorPaletteOpen(true)
         }
     }
 
@@ -42,18 +48,19 @@ export function NoteEdit({ onEditNote, selectedNote, onRemoveNote, onChangeBgCol
         >
             <DynamicCmp type={noteToEdit.type}
                 info={noteToEdit.info}
-                val={answersMap[noteToEdit.id] || ''}
+                val={answersMap[noteToEdit.id] || noteToEdit.info.txt}
                 onChangeVal={(val) => {
-                    onChangeVal(noteToEdit.id, val)
+                    onChangeVal(noteToEdit.id, val, noteToEdit.type)
                 }}
             />
             <NoteToolBar note={noteToEdit}
                 onRemoveNote={onRemoveNote}
+                onDuplicateNote={onDuplicateNote}
                 toggleColorPalette={() => toggleColorPalette()}
             />
             {isColorPaletteOpen && (
                 <NoteColorPalette note={noteToEdit}
-                onChangeBgColor={onChangeBgColor}
+                    onChangeBgColor={onChangeBgColor}
                 />
             )}
         </div>
@@ -75,14 +82,16 @@ function NoteTxt({ info, val = '', onChangeVal }) {
     const { txt } = info
     return (
         <section className="note-txt">
-            <input type="text" value={txt} onChange={(ev) => {
-                onChangeVal(ev.target.value)
-            }} />
+            <form>
+                <input type="text" value={val} onChange={(ev) => {
+                    onChangeVal(ev.target.value)
+                }} />
+            </form>
         </section>
     )
 }
 
-function NoteImg({ info }) {
+function NoteImg({ info, val = '', onChangeVal }) {
     const { url } = info
     return (
         <section className="note-img">
@@ -91,13 +100,13 @@ function NoteImg({ info }) {
     )
 }
 
-function NoteTodos({ info }) {
+function NoteTodos({ info, val = '', onChangeVal }) {
     const { todos } = info
     return (
         <section className="note-todos">
             <ul>
                 {
-                    todos.map(todo => <li key={todo.txt}>{todo.txt}</li>)
+                    todos.map(todo => <li key={todo.txt}><input type="checkbox"></input>{todo.txt}</li>)
                 }
             </ul>
         </section>

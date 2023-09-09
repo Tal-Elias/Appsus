@@ -1,7 +1,3 @@
-.note-index {
-    /* font-family: roboto, sans-serif; */
-}
-
 .note-index .note-header {
     display: flex;
     align-items: center;
@@ -15,4 +11,12 @@
 .note-index hr {
     margin: 0;
     margin-block-end: 2em;
+}
+
+.note-index button {
+    border-radius: 2em;
+}
+
+.note-index button:hover {
+    background-color: var(--clr2);
 }
