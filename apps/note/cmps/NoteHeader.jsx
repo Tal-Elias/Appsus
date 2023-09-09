@@ -1,4 +1,4 @@
-import { NoteFilter } from "./NoteFilter.jsx";
+import { NoteFilter } from "./NoteFilter.jsx"
 
 export function NoteHeader({ filterBy, onSetFilterBy }) {
     return (

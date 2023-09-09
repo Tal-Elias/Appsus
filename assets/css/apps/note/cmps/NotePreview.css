@@ -2,7 +2,6 @@
     position: relative;
     display: flex;
     flex-direction: column;
-    /* justify-content: space-between; */
 
     min-width: 240px;
     break-inside: avoid;
@@ -12,7 +11,6 @@
     border-radius: 8px;
     outline: 1px solid #d3d3d3;
 
-    /* box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2); */
     transition: transform 0.2s ease-in-out;
 }
 

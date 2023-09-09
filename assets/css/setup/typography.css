@@ -35,6 +35,7 @@
     font-family: fa-solid;
 }
 
+
 /* Note */
 .fa-notes.remove::before {
     content: "\f2ed";
@@ -55,10 +56,14 @@
 .fa-notes.list::before {
     content: "\f14a";
 }
+.fa.thumbtack::before {
+    content: "\f08d";
+}
 
 .fa.search::before {
     content: "\f002";
 }
+
 
 /* FA mail */
 .fa.inbox::before {

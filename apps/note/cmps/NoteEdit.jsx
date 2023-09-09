@@ -9,7 +9,8 @@ export function NoteEdit({
     selectedNote,
     onRemoveNote,
     onChangeBgColor,
-    onDuplicateNote
+    onDuplicateNote,
+    togglePinned
 }) {
 
     const [noteToEdit, setNoteToEdit] = useState(selectedNote)
@@ -97,6 +98,7 @@ export function NoteEdit({
                 onDuplicateNote={onDuplicateNote}
                 toggleColorPalette={() => toggleColorPalette()}
                 isNoteEditOpen={isNoteEditOpen}
+                togglePinned={togglePinned}
             />
             {isColorPaletteOpen && (
                 <NoteColorPalette note={noteToEdit}
