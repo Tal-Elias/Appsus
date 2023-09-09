@@ -85,7 +85,7 @@ function _createNotes() {
                     backgroundColor: '#98FB98'
                 },
                 info: {
-                    url: 'assets/img/audi.jpg',
+                    url: 'assets/img/dan-gold.jpg',
                     title: 'Bobi and Me'
                 }
             },

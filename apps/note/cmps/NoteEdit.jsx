@@ -127,7 +127,7 @@ function NoteTxt({ info, val, onChangeVal }) {
     return (
         <section className="note-txt">
             <form>
-                <input type="text" value={val} onChange={(ev) => {
+                <textarea type="text" value={val} onChange={(ev) => {
                     onChangeVal(ev.target.value)
                 }} />
             </form>
@@ -155,7 +155,7 @@ function NoteTodos({ info, val, onChangeVal }) {
         <section className="note-todos">
             <ul>
                 {
-                    todos.map(todo => <li key={todo.txt}><input type="checkbox"></input>{todo.txt}</li>)
+                    todos.map(todo => <li key={todo.txt}>{todo.txt}</li>)
                 }
             </ul>
         </section>
