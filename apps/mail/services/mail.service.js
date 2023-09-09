@@ -28,7 +28,8 @@ export const mailService = {
     getEmptyMail,
     getDefaultFilter,
     setIsReadById,
-    setStarredById
+    setStarredById,
+    sortMail
 
 }
 
@@ -59,6 +60,22 @@ function query(filterBy = defaultCriteria()) {
 
 }
 
+function sortMail(sortBy, change) {
+    return query().then((mails) => {
+      if (sortBy === 'sentAt') {
+        mails.sort((mail1, mail2) => (mail1[sortBy] - mail2[sortBy]) * change)
+      }
+      if (sortBy === 'subject') {
+        mails.sort((mail1, mail2) => {
+          const a = mail1[sortBy].toLowerCase()
+          const b = mail2[sortBy].toLowerCase()
+          return a.localeCompare(b) * change
+        })
+      }
+      return mails
+    })
+  }
+
 function get(mailId) {
     return asyncStorageService.get(MAIL_KEY, mailId)
         .then(mail => {
@@ -66,19 +83,18 @@ function get(mailId) {
             return mail
         })
 }
-//check if readbyid work
+
 function setIsReadById(mailId) {
-    let mail = get(mailId).then((mail) => {
+  return get(mailId).then((mail) => {
         mail.isRead = !mail.isRead
-
-
+        return save(mail)
     }).catch(err => console.log(err))
 
 }
 
 function setStarredById(mailId) {
     console.log(mailId)
-    return asyncStorageService.get(mailId)
+    return get(mailId)
         .then((mail) => {
             mail.isStarred = !mail.isStarred
             return save(mail)

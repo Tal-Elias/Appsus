@@ -16,7 +16,7 @@ const mailDB=[
         body: 'Dont miss out our sale of the year check in the website',
         isRead: false,
         isStarred: false,
-        sentAt : Date.now(),
+        sentAt : 1691122388,
         removedAt : null,
         from: 'sale@clothing.com',
         to: 'user@appsus.com'
@@ -27,7 +27,7 @@ const mailDB=[
             body: 'We you would like you to enjoy our shwarma once more',
             isRead: false,
             isStarred: false,
-            sentAt : Date.now(),
+            sentAt : 1686111188,
             isStarred: null,
             removedAt : null,
             from: 'shawarma@amba.com',
@@ -39,7 +39,7 @@ const mailDB=[
             body: 'enhence your skills in javascript in this course',
             isRead: false,
             isStarred: false,
-            sentAt : Date.now(),
+            sentAt : 1686111188,
             removedAt : null,
             from: 'course@mistercourse.com',
             to: 'user@appsus.com'
@@ -50,7 +50,8 @@ const mailDB=[
                 body: 'your post have been really popular',
                 isRead: false,
                 isStarred: false,
-                sentAt : Date.now(),
+                sentAt : 1687234388
+                ,
                 removedAt : null,
                 from: 'info@facebook.com',
                 to: 'user@appsus.com'
