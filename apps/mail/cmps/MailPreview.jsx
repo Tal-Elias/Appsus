@@ -20,6 +20,7 @@ export function MailPreview({ mail, onRemoveMail, onMailRead, onSetStarred }) {
         return `${day}-${month}-${year}`
     }
 
+        const bgRead= 'lightgrey'
 
     function handleAction(ev, action) {
         ev.preventDefault()
@@ -40,7 +41,7 @@ export function MailPreview({ mail, onRemoveMail, onMailRead, onSetStarred }) {
 
     }
     return (
-        <article className='mail-preview' onClick={(ev) => handleOnReadMail(ev, id)}
+        <article className={`mail-preview`} onClick={(ev) => handleOnReadMail(ev, id)}
             onMouseEnter={() => setIsMailHover(true)}
             onMouseLeave={() => setIsMailHover(false)}
         >

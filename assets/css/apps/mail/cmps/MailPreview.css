@@ -1,10 +1,13 @@
 .mail-preview {
+    padding-bottom: 10px;
+    padding-top: 10px;
+    -webkit-box-shadow: inset 0 -1px 0 0 rgba(100,121,143,0.122);
+    box-shadow: inset 0 -1px 0 0 rgba(100,121,143,0.122);
+    display: -webkit-box;
+    display: -webkit-flex;
     display: flex;
-    align-items: center;
+    position: relative;
     justify-content: space-between;
-    padding: 10px 20px;
-    cursor: pointer;
-    transition: background-color 0.3s;
 }
 
 .mail-preview:hover {
@@ -30,12 +33,16 @@
     justify-content: space-between;
     /* flex-direction: column; */
     flex-basis: 70%;
+    text-align: center;
+    gap:10px;
+    
 }
 
-.mail-preview .from {
+.mail-preview .content p {
     font-weight: bold;
     /* font-size: 14px; */
     color: #333;
+   
 }
 
 .mail-preview .subject {
@@ -60,7 +67,7 @@
 }
 
 .mail-preview .options button:hover {
-    /* color: #f0d74e; */
+    color: #1f1f1f;
 }
 
 .mail-preview .date {

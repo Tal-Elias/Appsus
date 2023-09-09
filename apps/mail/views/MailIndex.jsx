@@ -63,7 +63,6 @@ export function MailIndex() {
         let currentFilter = filterBy
         currentFilter.status = category
         setFilterBy(currentFilter)
-        console.log(filterBy)
     }
 
     function onMailRead(mailId) {
