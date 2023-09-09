@@ -13,7 +13,7 @@ function defaultCriteria() {
         status: '',
         txt: '',
         isRead: null,
-        isStared: null,
+        isStarred: null,
         lables: []
     }
 }
@@ -47,9 +47,10 @@ function query(filterBy = defaultCriteria()) {
             if (filterBy.status) {
                 mails = mails.filter(mail => mail.status===filterBy.status)
             }
-
-            if (filterBy.isRead) {
-                mails = mails.filter(mail => mail.isRead)
+          
+            if (filterBy.isStarred) {
+               
+                mails = mails.filter(mail => mail.isStarred)
             }
 
             if (filterBy.isRead) {
