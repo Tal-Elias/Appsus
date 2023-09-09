@@ -49,7 +49,10 @@ export function MailIndex() {
     }
 
     function onSentMail(mail) {
-        mailService.save(mail).then(sentMail => {
+        let sendingMail= mail
+        sendingMail.status='sent'
+        console.log(sendingMail)
+        mailService.save(sendingMail).then(sentMail => {
             setMails(prevMails => [...prevMails, sentMail])
             setIsAddingMail(false)
             showSuccessMsg('Mail have sent!')
@@ -58,6 +61,10 @@ export function MailIndex() {
 
     function onSelectedCategory(category){
         setSelectedCategory(category)
+        let currentFilter=filterBy
+        currentFilter.status=category
+        setFilterBy(currentFilter)
+        console.log(filterBy)
     }
 
     function onMailRead(mailId) {
@@ -93,7 +100,7 @@ export function MailIndex() {
                 <section className="side-menu flex column">
                     {isAddingMail && <EmailCompose handleCloseModal={handleCloseModal} onSentMail={onSentMail} />}
                     <button className="compose-button" onClick={() => setIsAddingMail(!isAddingMail)}>New mail</button>
-                    <EmailFolderList />
+                    <EmailFolderList selectedCategory={selectedCategory} onSelectedCategory={onSelectedCategory}/>
                 </section>
 
                 <MailList
