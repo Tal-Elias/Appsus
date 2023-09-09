@@ -43,7 +43,6 @@ export function NoteIndex() {
     }
 
     function onEditNote(editedNote) {
-        console.log('editedNote:', editedNote)
         noteService.save(editedNote)
             .then(() => {
                 const updatedNotes = notes.map(note => (note.id === editedNote.id ? editedNote : note))

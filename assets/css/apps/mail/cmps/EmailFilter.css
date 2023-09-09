@@ -1,20 +1,21 @@
-.mail-filter{
-    padding: 10px;
+.mail-filter {
+  padding: 10px;
 }
 
 .mail-filter form {
-    width: 40vw;
-  }
-  
-.mail-filter input{
+  display: flex;
+  width: 40vw;
+}
 
-        width: 100%;
-        padding: 15px;
-        border: none;
-        border-radius: 5px;
-        background-color: #f1f3f4;
-        /* box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.4); */
-        font-size: 14px;
-        outline: none;
-      
+.mail-filter input {
+
+  /* width: 100%; */
+  padding: 15px;
+  border: none;
+  border-radius: 5px;
+  background-color: #f1f3f4;
+  /* box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.4); */
+  font-size: 14px;
+  outline: none;
+
 }

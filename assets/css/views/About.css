@@ -1,0 +1,10 @@
+.about {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
+
+.about img {
+    max-width: 60vw;
+    max-height: auto;
+}

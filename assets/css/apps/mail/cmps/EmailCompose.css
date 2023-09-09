@@ -1,4 +1,6 @@
 .email-compose-wrapper {
+    /* display: flex;
+    flex-direction: column; */
     width: 45%;
     height: 55%;
     position: fixed;
@@ -18,14 +20,13 @@
 section.mail-compose{  
     padding: 0 20px;
 }
-.email-compose form  {
+.email-compose form {
     display: flex;
     flex-direction: column;
-    
-}
+  }
 
-.email-compose input,
-.email-compose textarea{
+.email-compose input{
+    font-size: 1.2rem;
     outline: none;
     border: none;
 }

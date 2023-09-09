@@ -9,7 +9,6 @@ export function EmailDetails() {
     const navigate = useNavigate()
 
     useEffect(() => {
-        console.log('have loaded')
         loadEmail()
     }, [params.mailId])
 
@@ -22,10 +21,10 @@ export function EmailDetails() {
             })
     }
 
-    const onDeleteEmail=(event,mail)=>{
+    const onDeleteEmail = (event, mail) => {
         event.stopPropagation()
 
-        mailService.remove(mail.id).then(()=>{navigate('/mail')})
+        mailService.remove(mail.id).then(() => { navigate('/mail') })
     }
     function getDateTimeFromTimestamp(timestampInSeconds) {
         const date = new Date(timestampInSeconds * 1000)
@@ -42,16 +41,14 @@ export function EmailDetails() {
             time: `${hours}:${minutes}:${seconds}`,
         }
 
-        return dateTimeObject.date;
+        return dateTimeObject.date
     }
 
 
     function onBack() {
         navigate('/mail')
-        // navigate(-1)
     }
 
-    // const dateTime=getDateTimeFromTimestamp(mail.sentAt)
     if (!mail) return <div>Loading...</div>
     const { from, to, subject, body } = mail
     return (
@@ -59,13 +56,13 @@ export function EmailDetails() {
             <div className="mail-details-header">
                 <div className="mail-tools flex space-between">
                     <i onClick={onBack} className=" fa arrow-left"></i>
-                    <i className="fa trash" onClick={(ev)=>onDeleteEmail(ev,mail)}></i>
-                   
-                   <div className="mail-indexes-arrows">
-                <Link to={`/mail/${mail.nextMailId}`}> <i className="fa arrow-next-left"></i></Link>
-                <Link to={`/mail/${mail.prevMailId}`}> <i className="fa arrow-next-right"></i></Link>
-                 
-                   </div>
+                    <i className="fa trash" onClick={(ev) => onDeleteEmail(ev, mail)}></i>
+
+                    <div className="mail-indexes-arrows">
+                        <Link to={`/mail/${mail.nextMailId}`}> <i className="fa arrow-next-left"></i></Link>
+                        <Link to={`/mail/${mail.prevMailId}`}> <i className="fa arrow-next-right"></i></Link>
+
+                    </div>
                 </div>
             </div>
             <div className="mail-body ">
@@ -73,21 +70,21 @@ export function EmailDetails() {
                     <div className="body-header-top flex space-between">
                         <h2 className="subject"> {mail.subject}</h2>
                         <p className="mail-date-time">{getDateTimeFromTimestamp(mail.sentAt)}</p>
-                  </div>
-                  <div className="body-header-bottom flex">
-                        <i className="fa user"></i> 
+                    </div>
+                    <div className="body-header-bottom flex">
+                        <i className="fa user"></i>
                         <div className=" flex column">
                             <h3>{mail.from}</h3>
                             <p>{mail.to}</p>
                         </div>
-                  </div>
+                    </div>
                 </div>
                 <div className="mail-details-body-message">
                     <p className="mail-body-text">{mail.body}</p>
                 </div>
             </div>
-    
-       
+
+
         </section>
     )
 
