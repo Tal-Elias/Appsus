@@ -12,6 +12,7 @@ export function MailIndex() {
     const [mails, setMails] = useState(null)
     const [isAddingMail, setIsAddingMail] = useState(false)
     const [filterBy, setFilterBy] = useState(mailService.getDefaultFilter())
+    const [selectedCategory, setSelectedCategory] = useState('Inbox')
 
     useEffect(() => {
         mailService.query(filterBy)
@@ -53,6 +54,10 @@ export function MailIndex() {
             setIsAddingMail(false)
             showSuccessMsg('Mail have sent!')
         })
+    }
+
+    function onSelectedCategory(category){
+        setSelectedCategory(category)
     }
 
     function onMailRead(mailId) {
