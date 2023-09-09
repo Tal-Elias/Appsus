@@ -45,8 +45,8 @@ export function MailPreview({ mail, onRemoveMail, onMailRead, onSetStarred }) {
             {/* <li> */}
 
             <article className='mail-preview space-between flex align-center' onClick={(ev) => handleOnReadMail(ev, id)}
-                // onMouseEnter={() => setIsMailHover(true)}
-                // onMouseLeave={() => setIsMailHover(false)}
+                onMouseEnter={() => setIsMailHover(true)}
+                onMouseLeave={() => setIsMailHover(false)}
             >
                 <div onClick={(ev) => { handleAction(ev, 'star') }} className="star">{(mail.isStarred) ? <button className="fa starred"></button> : <button className="fa starred"></button>}</div>
                 
