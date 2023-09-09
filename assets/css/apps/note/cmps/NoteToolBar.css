@@ -1,7 +1,11 @@
 .note-toolbar {
-    /* position: relative; */
     opacity: 0;
     transition: opacity 0.2s ease-in-out;
+    margin-block-start: auto;
+}
+
+.note-toolbar.edit {
+    opacity: 1;
     margin-block-start: auto;
 }
 
@@ -10,70 +14,18 @@
 }
 
 .note-toolbar button {
-    /* position: relative; */
-    /* font-size: 1rem; */
-    /* color: var(--clrPrimary-2); */
     background-color: transparent;
     border: none;
     border-radius: 2em;
-    /* border-radius: 10px; */
     padding: 10px;
-    font-weight: bold;
     cursor: pointer;
-    /* box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); */
     transition: box-shadow 0.3s;
 }
 
-/* .note-toolbar button:hover {
-    background-color: rgb(231, 231, 231);
-} */
+.note-toolbar .fa-notes {
+    font-size: 1rem;
+}
 
 .note-toolbar .bg-color {
     position: relative;
 }
-
-/* .color-select {
-    padding: 5px;
-    background-color: transparent;
-    border: none;
-  } */
-
-/* .note-toolbar .color-select option {
-    padding: 5px;
-} */
-
-/* .color-select option[value="soft-blue"] {
-    background-color: var(--clr-bg-1);
-}
-
-.color-select option[value="pale-green"] {
-    background-color: var(--clr-bg-2);
-}
-
-.color-select option[value="lavender"] {
-    background-color: var(--clr-bg-3);
-}
-
-.color-select option[value="peach"] {
-    background-color: var(--clr-bg-4);
-}
-
-.color-select option[value="misty-rose"] {
-    background-color: var(--clr-bg-5);
-}
-
-.color-select option[value="lilac"] {
-    background-color: var(--clr-bg-6);
-} */
-
-
-
-/* .note-toolbar input[type="color"] {
-    position: absolute;
-    height: 100%;
-    top: 50%;
-    left: 50%;
-    cursor: pointer;
-    transform: translate(-50%, -50%);
-    opacity: 0;
-} */

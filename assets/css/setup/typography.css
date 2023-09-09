@@ -11,6 +11,10 @@
 /* FONT AWSOME */
 
 @font-face {
+    font-family: fa-notes;
+    src: url("../../fonts/fa/fa-regular-400.ttf");
+}
+@font-face {
     font-family: fa;
     src: url("../../fonts/fa/fa-solid-900.ttf");
 }
@@ -22,13 +26,18 @@
 .fa::before {
     font-family: fa;
 }
+.fa-notes::before {
+    font-family: fa-notes;
+    /* font-size: 1rem; */
+}
 
 .fa-solid::before {
     font-family: fa-solid;
 }
 
+
 /* Note */
-.fa.remove::before {
+.fa-notes.remove::before {
     content: "\f2ed";
 }
 
@@ -36,21 +45,25 @@
     content: "\f53f";
 }
 
-.fa.duplicate::before {
+.fa-notes.duplicate::before {
     content: "\f24d";
 }
 
-.fa.image::before {
+.fa-notes.image::before {
     content: "\f03e";
 }
 
-.fa.list::before {
+.fa-notes.list::before {
     content: "\f14a";
+}
+.fa.thumbtack::before {
+    content: "\f08d";
 }
 
 .fa.search::before {
     content: "\f002";
 }
+
 
 /* FA mail */
 .fa.inbox::before {

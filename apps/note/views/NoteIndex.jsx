@@ -1,5 +1,4 @@
 import { noteService } from "../../note/services/note.service.js"
-import { utilService } from "../../../services/util.service.js"
 import { NoteHeader } from "../cmps/NoteHeader.jsx"
 import { NoteList } from "../cmps/NoteList.jsx"
 import { NoteAdd } from "../cmps/NoteAdd.jsx"
@@ -44,6 +43,7 @@ export function NoteIndex() {
     }
 
     function onEditNote(editedNote) {
+        console.log('editedNote:', editedNote)
         noteService.save(editedNote)
             .then(() => {
                 const updatedNotes = notes.map(note => (note.id === editedNote.id ? editedNote : note))
@@ -90,7 +90,7 @@ export function NoteIndex() {
             prevNotes.map((note) => note.id === newNote.id ? newNote : note))
         noteService.save(newNote)
             .then(() => {
-                console.log('Note background changed!');
+                console.log('Note background changed!')
             })
             .catch(err => {
                 console.log('err:', err)
@@ -103,8 +103,12 @@ export function NoteIndex() {
     }
 
     function togglePinned(note) {
-        const newNote = { ...note, isPinned: !note.isPinned }
-        noteService.save(newNote).then(loadNotes)
+        const updatedNote = { ...note, isPinned: !note.isPinned }
+        noteService.save(updatedNote)
+            .then(loadNotes)
+            .catch(err => {
+                console.error('Error toggling pin:', err)
+            })
     }
 
     if (!notes) return <div>Loading...</div>
@@ -112,7 +116,8 @@ export function NoteIndex() {
         <section className="note-index">
             <NoteHeader filterBy={filterBy} onSetFilterBy={onSetFilterBy} />
             <NoteAdd onSaveNote={onSaveNote} />
-            <NoteList notes={notes}
+            <NoteList
+                notes={notes}
                 onRemoveNote={onRemoveNote}
                 onSelectedNote={onSelectedNote}
                 togglePinned={togglePinned}
@@ -128,8 +133,9 @@ export function NoteIndex() {
                     selectedNote={selectedNote}
                     onRemoveNote={onRemoveNote}
                     onChangeBgColor={onChangeBgColor}
-                    onSaveNote={onSaveNote}
                     onDuplicateNote={onDuplicateNote}
+                    isNoteEditOpen={isNoteEditOpen}
+                    togglePinned={togglePinned}
                 />}
             </div>
         </section>
