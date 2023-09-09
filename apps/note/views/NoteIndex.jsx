@@ -44,6 +44,7 @@ export function NoteIndex() {
     }
 
     function onEditNote(editedNote) {
+        console.log('editedNote:', editedNote)
         noteService.save(editedNote)
             .then(() => {
                 const updatedNotes = notes.map(note => (note.id === editedNote.id ? editedNote : note))
@@ -112,7 +113,8 @@ export function NoteIndex() {
         <section className="note-index">
             <NoteHeader filterBy={filterBy} onSetFilterBy={onSetFilterBy} />
             <NoteAdd onSaveNote={onSaveNote} />
-            <NoteList notes={notes}
+            <NoteList
+                notes={notes}
                 onRemoveNote={onRemoveNote}
                 onSelectedNote={onSelectedNote}
                 togglePinned={togglePinned}
@@ -128,8 +130,8 @@ export function NoteIndex() {
                     selectedNote={selectedNote}
                     onRemoveNote={onRemoveNote}
                     onChangeBgColor={onChangeBgColor}
-                    onSaveNote={onSaveNote}
                     onDuplicateNote={onDuplicateNote}
+                    isNoteEditOpen={isNoteEditOpen}
                 />}
             </div>
         </section>

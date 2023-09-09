@@ -24,6 +24,7 @@
 @import './apps/note/cmps/NoteColorPalette.css';
 @import './apps/note/cmps/NoteTxt.css';
 @import './apps/note/cmps/NoteImg.css';
+@import './apps/note/cmps/NoteVideo.css';
 
 /* Mail */
 @import './apps/mail/views/MailIndex.css';

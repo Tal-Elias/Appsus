@@ -3,6 +3,7 @@ import { NoteToolBar } from "./NoteToolBar.jsx"
 import { NoteTxt } from "./DynamicCmps/NoteTxt.jsx"
 import { NoteImg } from "./DynamicCmps/NoteImg.jsx"
 import { NoteTodos } from "./DynamicCmps/NoteTodos.jsx"
+import { NoteVideo } from "./DynamicCmps/NoteVideo.jsx"
 
 const { useState, useEffect } = React
 
@@ -14,6 +15,8 @@ function NotePreview(props) {
             return <NoteImg {...props} />
         case 'NoteTodos':
             return <NoteTodos {...props} />
+        case 'NoteVideo':
+            return <NoteVideo {...props} />
     }
 }
 
@@ -37,12 +40,14 @@ export function NoteList({ notes, onRemoveNote, onSelectedNote, onChangeBgColor,
             {
                 notes.map(note =>
                     <div className="note-preview" key={note.id} onClick={() => onSelectedNote(note)} style={note.style}>
-                        <NotePreview type={note.type}
+                        <NotePreview
+                            type={note.type}
                             info={note.info}
                             onSelectedNote={onSelectedNote}
                             togglePinned={togglePinned}
                         />
-                        <NoteToolBar note={note}
+                        <NoteToolBar
+                            note={note}
                             onRemoveNote={onRemoveNote}
                             toggleColorPalette={toggleColorPalette}
                             onDuplicateNote={onDuplicateNote}

@@ -2,6 +2,13 @@
     /* position: relative; */
     columns: 6 240px;
     column-gap: 15px;
-    padding-left: 50px;
-    padding-right: 50px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+@media (min-width: 920px) {
+    .note-list {
+        padding-left: 100px;
+        padding-right: 100px;
+    }
 }

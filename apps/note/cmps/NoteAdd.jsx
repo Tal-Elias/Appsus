@@ -45,8 +45,8 @@ export function NoteAdd({ onSaveNote }) {
                     />
                     {
                         <div className="note-type">
-                            <button type="button" className="fa list"></button>
-                            <button type="button" className="fa image"></button>
+                            <button type="button" className="fa-notes list"></button>
+                            <button type="button" className="fa-notes image"></button>
                         </div>
                     }
                 </div>
