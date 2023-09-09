@@ -5,7 +5,6 @@ export function MailFilter({ filterBy, onSetFilterBy }) {
 
   useEffect(() => {
     onSetFilterBy(filterByToEdit)
-    console.log(filterByToEdit);
   }, [filterByToEdit])
 
   function handleChange({ target }) {

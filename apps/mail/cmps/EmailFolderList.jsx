@@ -8,7 +8,6 @@ setActiveCategory(selectedCategory)
 },[activeCategory])
 
 function handleSelectedCategory(category){
-console.log(category)
 setActiveCategory(category)
 onSelectedCategory(category)
 

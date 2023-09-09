@@ -82,11 +82,11 @@
     content: "\e4eb";
 }
 
-.fa.unstarred::before {
-    content: "\2606";
+.fa.starred::before {
+    content: "\f005";
 }
 
-.fa.starred::before {
+.fa-notes.unstarred::before {
     content: "\f005";
 
 }

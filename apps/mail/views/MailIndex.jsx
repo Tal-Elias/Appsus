@@ -49,9 +49,8 @@ export function MailIndex() {
     }
 
     function onSentMail(mail) {
-        let sendingMail= mail
-        sendingMail.status='sent'
-        console.log(sendingMail)
+        let sendingMail = mail
+        sendingMail.status = 'sent'
         mailService.save(sendingMail).then(sentMail => {
             setMails(prevMails => [...prevMails, sentMail])
             setIsAddingMail(false)
@@ -59,10 +58,10 @@ export function MailIndex() {
         })
     }
 
-    function onSelectedCategory(category){
+    function onSelectedCategory(category) {
         setSelectedCategory(category)
-        let currentFilter=filterBy
-        currentFilter.status=category
+        let currentFilter = filterBy
+        currentFilter.status = category
         setFilterBy(currentFilter)
         console.log(filterBy)
     }
@@ -80,9 +79,9 @@ export function MailIndex() {
         setFilterBy(prevFilter => ({ ...prevFilter, ...filterBy }))
     }
 
-    function handleSortChange(sortCriteria){
-        mailService.sortMail(sortCriteria.sortBy,sortCriteria.order).then((sortedMails)=>{
-        setMails(sortedMails)  
+    function handleSortChange(sortCriteria) {
+        mailService.sortMail(sortCriteria.sortBy, sortCriteria.order).then((sortedMails) => {
+            setMails(sortedMails)
         })
     }
 
@@ -90,17 +89,17 @@ export function MailIndex() {
     return (
         <section className=" mail-index  " >
             <div className="mail-header flex">
-                <div className="fa note-icon">ICON</div>
-                
+                <div className="fa note-icon"></div>
+
                 <MailFilter filterBy={filterBy} onSetFilterBy={onSetFilterBy} />
-                <MailSort onSortChange={handleSortChange}/>
+                <MailSort onSortChange={handleSortChange} />
             </div>
 
             <section className="mail-content flex">
                 <section className="side-menu flex column">
                     {isAddingMail && <EmailCompose handleCloseModal={handleCloseModal} onSentMail={onSentMail} />}
                     <button className="compose-button" onClick={() => setIsAddingMail(!isAddingMail)}>New mail</button>
-                    <EmailFolderList selectedCategory={selectedCategory} onSelectedCategory={onSelectedCategory}/>
+                    <EmailFolderList selectedCategory={selectedCategory} onSelectedCategory={onSelectedCategory} />
                 </section>
 
                 <MailList
@@ -110,14 +109,7 @@ export function MailIndex() {
                     onSetStarred={onSetStarred}
                 />
             </section>
-
-
-
         </section>
-
-
     )
-
-
 }
 

@@ -93,7 +93,6 @@ function setIsReadById(mailId) {
 }
 
 function setStarredById(mailId) {
-    console.log(mailId)
     return get(mailId)
         .then((mail) => {
             mail.isStarred = !mail.isStarred
@@ -122,15 +121,6 @@ function getDefaultFilter() {
         lables: []
     }
 }
-// function setFilterBy(filterBy = {}) {
-//     if (filterBy.txt !== undefined) gFilterBy.title = filterBy.title
-//     if (filterBy.price !== undefined) gFilterBy.price = filterBy.price
-//     if (filterBy.publishedDate !== undefined)
-//       gFilterBy.publishedDate = filterBy.publishedDate
-//     return gFilterBy
-//   }
-
-
 
 function getEmptyMail() {
     return {
