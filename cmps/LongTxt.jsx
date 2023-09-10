@@ -1,7 +1,7 @@
 
 const { useState } = React
 
-export function LongTxt({ txt, length = 100 }) {
+export function LongTxt({ txt, length = 50 }) {
   const [isShowMore, setIsShowMore] = useState(false)
 
   function handleClick() {
