@@ -1,7 +1,6 @@
 .hero {
     color: #919191;
     text-align: center;
-    padding: 100px 0;
 }
 
 .hero h1 {
@@ -24,6 +23,8 @@
 
 .hero .container {
     background-color: rgba(52, 55, 59, 0.6);
+    padding: 20px;
+    margin-block-start: 6em;
 }
 
 .hero img {

@@ -5,7 +5,7 @@ export function Home() {
             <img src="assets\img\hero-bg.jpg" alt="" />
             <div className="container">
                 <h1>Welcome to Appsus</h1>
-                <p>Discover the amazing features that await you!</p>
+                <p>Explore the incredible features that are ready for you to uncover!</p>
             </div>
         </div>
     </section>
