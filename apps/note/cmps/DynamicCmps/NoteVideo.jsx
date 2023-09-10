@@ -9,8 +9,8 @@ export function NoteVideo({ info }) {
                 height="auto"
                 src={`https://www.youtube.com/embed/${url}`}
                 frameBorder="0"
-                allowFullScreen
-            ></iframe>
+                allowFullScreen>
+            </iframe>
         </section>
     )
 }

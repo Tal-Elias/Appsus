@@ -1,7 +1,9 @@
+import { MailSort } from "./MailSort.jsx"
+
 const { useState, useEffect } = React
 
-export function MailFilter({ filterBy, onSetFilterBy }) {
-  const [filterByToEdit, setFilterByToEdit] = useState({filterBy})
+export function MailFilter({ filterBy, onSetFilterBy, handleSortChange }) {
+  const [filterByToEdit, setFilterByToEdit] = useState({ filterBy })
 
   useEffect(() => {
     onSetFilterBy(filterByToEdit)
@@ -36,11 +38,11 @@ export function MailFilter({ filterBy, onSetFilterBy }) {
   const { txt, isRead, isStared } = filterByToEdit
 
   return (
-    <section className='mail-filter flex column'>
-      
+    <section className='mail-filter'>
+
       <form onSubmit={onSubmitFilter}>
         <input
-         
+
           onChange={handleChange}
           type='text'
           placeholder='Search in mail'
@@ -48,25 +50,27 @@ export function MailFilter({ filterBy, onSetFilterBy }) {
           value={txt}
           name='txt'
         />
+        <div className="fa search"></div>
+        <div className="filter-inputs">
+          <label htmlFor='isRead' className="fa unread"></label>
+          <input
+            onChange={handleChange}
+            type='checkbox'
+            id='isRead'
+            value={isRead}
+            name='isRead'
+          />
+          <label htmlFor='isStared' className="fa starred"></label>
+          <input
 
-        <label htmlFor='isRead'>isRead </label>
-        <input
-          onChange={handleChange}
-          type='checkbox'
-          id='isRead'
-          value={isRead}
-          name='isRead'
-        />
-
-        <label htmlFor='isStared'>isStared</label>
-        <input
-         
-          onChange={handleChange}
-          type='checkbox'
-          id='isStared'
-          value={isStared}
-          name='isStared'
-        />
+            onChange={handleChange}
+            type='checkbox'
+            id='isStared'
+            value={isStared}
+            name='isStared'
+          />
+          <MailSort onSortChange={handleSortChange} />
+        </div>
       </form>
     </section>
   )

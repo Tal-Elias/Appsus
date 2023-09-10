@@ -3,12 +3,21 @@ header {
     align-items: center;
     background: rgb(253, 245, 245);
     border-bottom: 2px solid white;
+    height: 9em;
+}
+
+.app-header h1 {
+    color: #2157afb4;
 }
 
 .app-header {
     display: flex;
     justify-content: space-between;
-    padding: 20px 20px;
+    padding: 20px 25px;
+}
+
+.app-header a {
+    font-size: 1rem;
 }
 
 nav a {
@@ -24,4 +33,3 @@ nav a.active {
     font-weight: bold;
     text-decoration: overline;
 }
-

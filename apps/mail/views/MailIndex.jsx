@@ -87,20 +87,24 @@ export function MailIndex() {
     if (!mails) return <div>loading...</div>
     return (
         <section className=" mail-index  " >
-            <div className="mail-header flex">
+            <div className="mail-header">
                 <div className="fa note-icon"></div>
-
-                <MailFilter filterBy={filterBy} onSetFilterBy={onSetFilterBy} />
-                <MailSort onSortChange={handleSortChange} />
+                <MailFilter
+                    filterBy={filterBy}
+                    onSetFilterBy={onSetFilterBy}
+                    handleSortChange={handleSortChange}
+                />
+                {/* <MailSort onSortChange={handleSortChange} /> */}
             </div>
-
             <section className="mail-content flex">
                 <section className="side-menu flex column">
                     {isAddingMail && <EmailCompose handleCloseModal={handleCloseModal} onSentMail={onSentMail} />}
-                    <button className="compose-button" onClick={() => setIsAddingMail(!isAddingMail)}>New mail</button>
-                    <EmailFolderList selectedCategory={selectedCategory} onSelectedCategory={onSelectedCategory} />
+                    <button className="compose-button" onClick={() => setIsAddingMail(!isAddingMail)}>Compose</button>
+                    <EmailFolderList
+                        selectedCategory={selectedCategory}
+                        onSelectedCategory={onSelectedCategory}
+                    />
                 </section>
-
                 <MailList
                     mails={mails}
                     onMailRead={onMailRead}

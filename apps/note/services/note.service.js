@@ -85,7 +85,7 @@ function _createNotes() {
                     backgroundColor: '#98FB98'
                 },
                 info: {
-                    url: 'assets/img/audi.jpg',
+                    url: 'assets/img/dan-gold.jpg',
                     title: 'Bobi and Me'
                 }
             },
@@ -123,7 +123,7 @@ function _createNotes() {
                     backgroundColor: '#87CEEB'
                 },
                 info: {
-                    url: 'EH2m2JIefDs',
+                    url: '7PmXTKwk',
                     title: 'Programming in Progress'
                 }
             },

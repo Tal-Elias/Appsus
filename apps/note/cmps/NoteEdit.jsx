@@ -54,6 +54,7 @@ export function NoteEdit({
                 break
         }
 
+        console.log('newNote:', newNote)
         setNoteToEdit(newNote)
         setHasEdits(true)
     }
@@ -86,7 +87,9 @@ export function NoteEdit({
                             ? answersMap[noteToEdit.id] || noteToEdit.info.url
                             : noteToEdit.type === 'NoteTodos'
                                 ? answersMap[noteToEdit.id] || noteToEdit.info.todos
-                                : null
+                                : noteToEdit.type === 'NoteVideo'
+                                    ? answersMap[noteToEdit.id] || noteToEdit.info.url
+                                    : null
                 }
                 onChangeVal={(val) => {
                     onChangeVal(noteToEdit.id, val)
@@ -127,7 +130,7 @@ function NoteTxt({ info, val, onChangeVal }) {
     return (
         <section className="note-txt">
             <form>
-                <input type="text" value={val} onChange={(ev) => {
+                <textarea type="text" value={val} onChange={(ev) => {
                     onChangeVal(ev.target.value)
                 }} />
             </form>
@@ -151,12 +154,33 @@ function NoteImg({ info, val, onChangeVal }) {
 
 function NoteTodos({ info, val, onChangeVal }) {
     const { todos } = info
+
+    const handleTodoClick = (todoIndex) => {
+        const updatedTodos = [...todos]
+        const clickedTodo = updatedTodos[todoIndex]
+
+        if (clickedTodo.doneAt === null) {
+            clickedTodo.doneAt = new Date().toISOString()
+        } else {
+            clickedTodo.doneAt = null
+        }
+        onChangeVal(updatedTodos)
+    }
+
     return (
         <section className="note-todos">
             <ul>
-                {
-                    todos.map(todo => <li key={todo.txt}><input type="checkbox"></input>{todo.txt}</li>)
-                }
+                {todos.map((todo, index) => (
+                    <li
+                        key={index}
+                        onClick={() => handleTodoClick(index)}
+                        className={todo.doneAt ? "done" : ""}
+                    >
+                        <span style={{ textDecoration: todo.doneAt ? "line-through" : "none" }}>
+                            {todo.txt}
+                        </span>
+                    </li>
+                ))}
             </ul>
         </section>
     )

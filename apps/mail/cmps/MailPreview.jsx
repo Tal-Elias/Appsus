@@ -38,7 +38,6 @@ export function MailPreview({ mail, onRemoveMail, onMailRead, onSetStarred }) {
     function handleOnReadMail(ev, id) {
         onMailRead(id)
         navigate(`/mail/${id}`)
-
     }
     return (
         <article className={`mail-preview`} onClick={(ev) => handleOnReadMail(ev, id)}
@@ -59,7 +58,7 @@ export function MailPreview({ mail, onRemoveMail, onMailRead, onSetStarred }) {
                     <button title="keep as a note" className="fa sent"></button>
                 </section>
 
-            ) : <p>{SentAtDate(sentAt)}</p>
+            ) : <p className="date-options">{SentAtDate(sentAt)}</p>
             }
 
         </article>

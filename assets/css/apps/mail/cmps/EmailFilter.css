@@ -1,21 +1,47 @@
 .mail-filter {
+  position: relative;
   padding: 10px;
 }
 
 .mail-filter form {
-  display: flex;
-  width: 40vw;
+  width: 720px;
 }
 
 .mail-filter input {
-
-  /* width: 100%; */
+  width: 100%;
   padding: 15px;
+  padding-inline-start: 3em;
   border: none;
-  border-radius: 5px;
-  background-color: #f1f3f4;
-  /* box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.4); */
+  border-radius: 2em;
+  background-color: #eaf1fb;
   font-size: 14px;
   outline: none;
+}
 
+.mail-filter input::placeholder {
+  margin-inline-start: 2em;
+}
+
+.mail-filter .fa.search {
+  position: absolute;
+  left: 1.5em;
+  bottom: 4.1em;
+  display: block;
+  color: var(--clr1);
+}
+
+.mail-filter .filter-inputs {
+  display: flex;
+  gap: 10px;
+  width: max-content;
+  padding: 10px;
+}
+
+.mail-filter label {
+  display: flex;
+  align-items: center;
+}
+
+.sort-container button {
+  margin-inline-start: .5em;
 }

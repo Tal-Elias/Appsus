@@ -1,13 +1,20 @@
-
-/* .mail-body-text{
-
-
-} */
-
 .mail-details-header{
-    font-size: 1.5em;
+    font-size: 1.2rem;
+    padding: 20px;
 }
-.mail-indexes-arrows{
-   gap: 50px;
-   height: 20px;
+.mail-details {
+    padding: 0 20px 20px 20px;
+}
+
+.mail-details i {
+    cursor: pointer;
+}
+
+.mail-details i {
+    padding: 10px;
+    border-radius: 2em;
+}
+
+.mail-details i:hover {
+    background-color: var(--clr2);
 }
