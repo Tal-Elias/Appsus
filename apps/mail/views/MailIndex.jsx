@@ -88,7 +88,7 @@ export function MailIndex() {
     return (
         <section className=" mail-index  " >
             <div className="mail-header">
-                <div className="fa note-icon"></div>
+                {/* <div className="fa note-icon"></div> */}
                 <MailFilter
                     filterBy={filterBy}
                     onSetFilterBy={onSetFilterBy}

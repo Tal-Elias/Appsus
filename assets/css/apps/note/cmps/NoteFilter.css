@@ -1,10 +1,11 @@
 .note-filter {
   position: relative;
   padding: 10px;
+  margin: auto;
 }
 
 .note-filter form {
-  width: 720px;
+  width: 300px;
 }
 
 .note-filter input {
@@ -28,4 +29,10 @@
   bottom: 1.5em;
   display: block;
   color: var(--clr1);
+}
+
+@media (min-width: 920px) {
+  .note-filter form {
+    width: 720px;
+  }
 }
