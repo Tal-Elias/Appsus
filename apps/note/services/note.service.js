@@ -123,7 +123,7 @@ function _createNotes() {
                     backgroundColor: '#87CEEB'
                 },
                 info: {
-                    url: 'EH2m2JIefDs',
+                    url: '7PmXTKwk',
                     title: 'Programming in Progress'
                 }
             },

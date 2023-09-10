@@ -4,7 +4,10 @@ export function NoteTodos({ info }) {
         <section className="note-todos">
             <ul>
                 {
-                    todos.map(todo => <li key={todo.txt}>{todo.txt}</li>)
+                    todos.map(todo => <li key={todo.txt}>
+                        <span style={{ textDecoration: todo.doneAt ? "line-through" : "none" }}>
+                            {todo.txt}</span>
+                    </li>)
                 }
             </ul>
         </section>

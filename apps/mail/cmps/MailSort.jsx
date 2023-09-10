@@ -17,7 +17,7 @@ export function MailSort({ onSortChange }) {
 
   return (
 
-    <div className='sort-container'>
+    <div className='sort-container flex'>
       <select name='sortBy' value={sortCriteria.sortBy} onChange={handleChange}>
         <option value='sentAt'>date</option>
         <option value='subject'>subject</option>

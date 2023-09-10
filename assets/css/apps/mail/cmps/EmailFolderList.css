@@ -1,27 +1,23 @@
-.email-folder-list{
+.email-folder-list {
   margin-top: 10px;
   display: flex;
-  flex-direction: column;  
- gap:35px
+  flex-direction: column;
+  gap: 35px
 }
 
-.email-folder-list button{
+.email-folder-list button {
   max-width: 10vw;
   background-color: transparent;
   display: flex;
-  border-radius:50px;
- 
-  
+  border-radius: 50px;
 }
 
-
-.email-folder-list button.fa{
+.email-folder-list button.fa {
   justify-content: space-around;
   border: transparent;
 }
 
-.email-folder-list button.fa:hover{
-background-color: #f1f3f4;
-cursor: pointer;
-
+.email-folder-list button.fa:hover {
+  background-color: #f1f3f4;
+  cursor: pointer;
 }

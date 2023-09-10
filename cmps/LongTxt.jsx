@@ -1,7 +1,7 @@
 
 const { useState } = React
 
-export function LongTxt({ txt, length = 100 }) {
+export function LongTxt({ txt, length = 40 }) {
   const [isShowMore, setIsShowMore] = useState(false)
 
   function handleClick() {
@@ -17,11 +17,8 @@ export function LongTxt({ txt, length = 100 }) {
   }
 
   return (
-    <div>
-      {getTxtToShow()}
-      {/* {txt.length > length && (
-        // <button onClick={handleClick}>{!isShowMore ? 'Show More' : 'Show Less'}</button>
-      )} */}
+    <div className="mail-body">
+      <p>{getTxtToShow()}</p>
     </div>
   )
 }
